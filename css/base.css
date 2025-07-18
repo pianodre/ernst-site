@@ -101,6 +101,15 @@ body {
     min-height: 100vh;
 }
 
+/* Mobile-only profile box */
+.mobile-profile-box {
+    display: none;
+    background-color: #000;
+    padding: 1.5rem 0;
+    text-align: center;
+    width: 100%;
+}
+
 /* 6. Utility classes */
 .text-center {
     text-align: center;
@@ -121,20 +130,20 @@ body {
         flex-direction: column;
     }
     
+    /* Show mobile profile box and hide desktop one */
+    .mobile-profile-box {
+        display: block;
+        order: 1;
+    }
+    
+    .sidebar .profile-box {
+        display: none;
+    }
+    
     .container {
         flex-direction: column;
         display: flex;
         order: 2;
-    }
-    
-    /* Extract profile box and move it to the top level */
-    .profile-box {
-        width: 100%;
-        margin: 0;
-        padding: 1.5rem 0;
-        order: 1;
-        position: relative;
-        z-index: 10;
     }
     
     .sidebar {
@@ -143,7 +152,7 @@ body {
         border-right: none;
         border-bottom: none;
         order: 3;
-        padding-top: 0;
+        padding-top: 1rem;
     }
     
     .nav-menu, .social-icons {
