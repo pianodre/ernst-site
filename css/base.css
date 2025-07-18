@@ -1,0 +1,129 @@
+/* 
+BASE CSS RULES
+
+1. Reset styles (remove default margins, set box-sizing: border-box)
+2. Basic typography (set fonts, sizes for body, h1–h6, p, a)
+3. Colors (set main text and background colors)
+4. Reusable layout styles (.container, .section, etc.)
+5. Common components (e.g., buttons, forms, nav)
+6. Utility classes (optional helpers like .text-center, .hidden, .flex)
+7. Responsive basics (small screen tweaks if needed)
+
+*/
+
+/* 1. Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 2. Basic typography */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+/* 3. Colors */
+body {
+    background-color: #333;
+    color: #fff;
+}
+
+/* 4. Reusable layout styles */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.section {
+    padding: 2rem 0;
+}
+
+/* 5. Common components */
+.sidebar {
+    width: 15vw;
+    min-width: 12rem;
+    height: 100vh;
+    padding: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 6. Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+/* 7. Responsive basics */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
