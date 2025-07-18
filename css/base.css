@@ -116,9 +116,25 @@ body {
 
 /* 7. Responsive basics */
 @media (max-width: 768px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    
     .container {
         flex-direction: column;
         display: flex;
+        order: 2;
+    }
+    
+    /* Extract profile box and move it to the top level */
+    .profile-box {
+        width: 100%;
+        margin: 0;
+        padding: 1.5rem 0;
+        order: 1;
+        position: relative;
+        z-index: 10;
     }
     
     .sidebar {
@@ -126,25 +142,17 @@ body {
         height: auto;
         border-right: none;
         border-bottom: none;
-        order: 2;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .profile-box {
-        order: -1;
-        width: 100%;
-        margin: 0;
-        padding: 1.5rem 0;
+        order: 3;
+        padding-top: 0;
     }
     
     .nav-menu, .social-icons {
-        order: 1;
+        margin-top: 1rem;
     }
     
     .content {
         padding: 1.5rem;
         min-height: auto;
-        order: 1;
+        order: 2;
     }
 }
