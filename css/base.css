@@ -93,11 +93,11 @@ body {
 
 .content {
     flex: 1;
-    padding: 2rem;
+    padding: 2rem 0 2rem 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
 }
 
