@@ -1,0 +1,59 @@
+/* 
+ABOUT SECTION CSS
+
+Styles for the About Me section
+- Full viewport height layout
+- Responsive design for mobile and desktop
+- Professional styling consistent with the portfolio theme
+*/
+
+.about-section {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(100, 255, 218, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(100, 255, 218, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.about-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    line-height: 1.6;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Mobile styles for about section */
+@media (max-width: 768px) {
+    .about-content {
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+    
+    .about-text {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+}

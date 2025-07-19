@@ -220,6 +220,7 @@ HOME CSS RULES
     .hero {
         max-width: 100%;
         padding: 0;
+        text-align: center;
     }
     
     .main-heading {
@@ -227,10 +228,12 @@ HOME CSS RULES
         word-break: normal;
         word-wrap: break-word;
         hyphens: auto;
+        text-align: center;
     }
     
     .sub-heading {
         font-size: 1rem;
+        text-align: center;
     }
     
     /* Allow text wrapping on mobile for typing animation */
@@ -239,6 +242,7 @@ HOME CSS RULES
         word-wrap: break-word;
         overflow-wrap: break-word;
         hyphens: auto;
+        text-align: center;
     }
 }
 
