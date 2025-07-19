@@ -232,6 +232,14 @@ HOME CSS RULES
     .sub-heading {
         font-size: 1rem;
     }
+    
+    /* Allow text wrapping on mobile for typing animation */
+    #typing-text-line1, #typing-text-line2 {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
 }
 
 .nav-menu li {
