@@ -6,7 +6,7 @@
     <title>Dylan's Portfolio</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/typing-animation.js"></script>
 </head>
 <body>
     <!-- Mobile-only profile box that appears at the top -->
@@ -35,9 +35,22 @@
         </nav>
         
         <main class="content">
+            <canvas id="matrix-canvas" class="matrix-background"></canvas>
             <section class="hero">
-                <h1 class="main-heading">Hi, I'm Dylan. A Computer Science Major</h1>
-                <p class="sub-heading">Cybersecurity emphasis</p>
+                <h1 class="main-heading">
+                    <div class="heading-line">
+                        <span id="typing-text-line1"></span>
+                        <span class="cursor cursor-line1">|</span>
+                    </div>
+                    <div class="heading-line">
+                        <span id="typing-text-line2"></span>
+                        <span class="cursor cursor-line2">|</span>
+                    </div>
+                </h1>
+                <p class="sub-heading">
+                    <span id="sub-typing-text"></span>
+                    <span class="sub-cursor">|</span>
+                </p>
             </section>
         </main>
     </div>

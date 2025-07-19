@@ -12,22 +12,27 @@ HOME CSS RULES
 .hero {
     text-align: left;
     padding: 0rem;
-    max-width: 50vw;
+    max-width: min(50vw, 800px);
+    width: 100%;
 }
 
 .main-heading {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
     color: #fff;
     letter-spacing: 1px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .sub-heading {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
     color: #64ffda; /* Teal color for the subtext */
-    letter-spacing: 2px;
+    letter-spacing: clamp(1px, 0.5vw, 2px);
     text-transform: uppercase;
     font-weight: 300;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* 2. Styles for homepage buttons or call-to-actions */
@@ -101,11 +106,11 @@ HOME CSS RULES
 .nav-menu li a::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: -0.7em;
     top: 50%;
     transform: translateY(-50%);
-    width: 5px;
-    height: 5px;
+    width: 0.3em;
+    height: 0.3em;
     border-radius: 50%;
     background-color: #64ffda;
     opacity: 0;
@@ -119,6 +124,23 @@ HOME CSS RULES
 /* 4. Any special images or background styles */
 .content {
     background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    position: relative;
+}
+
+/* Matrix Background Canvas */
+.matrix-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero {
+    position: relative;
+    z-index: 2;
 }
 
 /* 5. Animations or effects used only on the homepage */
@@ -127,8 +149,70 @@ HOME CSS RULES
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Typing animation styles */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
 .hero {
-    animation: fadeIn 1s ease-out forwards;
+    opacity: 1;
+}
+
+.main-heading {
+    position: relative;
+    display: block;
+}
+
+.heading-line {
+    display: block;
+    line-height: 1.2;
+}
+
+.sub-heading {
+    position: relative;
+    display: inline-block;
+}
+
+#typing-text-line1, #typing-text-line2 {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: none;
+}
+
+#sub-typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: none;
+}
+
+.cursor, .sub-cursor {
+    display: inline-block;
+    animation: blink 1s infinite;
+    color: #64ffda;
+    font-weight: 300;
+}
+
+.cursor {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+}
+
+.sub-cursor {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    line-height: 1;
+}
+
+/* Hide cursors initially */
+.cursor.hidden, .sub-cursor.hidden {
+    display: none;
 }
 
 /* Mobile styles for hero section */
