@@ -7,41 +7,41 @@ Styles for the Projects section
 - Professional styling consistent with the portfolio theme
 */
 
-.skills-section {
+.projects-section {
     background-color: #1a1a1a;
     color: #fff;
     position: relative;
     overflow: hidden;
 }
 
-.skills-content {
+.projects-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     gap: 2rem;
     position: relative;
     z-index: 2;
+    padding: 2rem 0;
 }
 
-.skills-text {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+.projects-text {
+    font-size: 1.1rem;
     line-height: 1.6;
     color: #ccc;
+    text-align: center;
     max-width: 800px;
-    margin: 0 auto;
 }
 
-/* Mobile styles for skills section */
+/* Mobile styles for projects section */
 @media (max-width: 768px) {
-    .skills-content {
-        padding: 0 1rem;
+    .projects-content {
+        padding: 1rem 0;
         gap: 1.5rem;
     }
     
-    .skills-text {
-        font-size: 1.1rem;
-        line-height: 1.5;
+    .projects-text {
+        font-size: 1rem;
+        text-align: center;
     }
 }

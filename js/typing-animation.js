@@ -10,7 +10,7 @@ class TypingAnimation {
         this.line1Cursor = document.querySelector('.cursor-line1');
         this.line2Cursor = document.querySelector('.cursor-line2');
         this.subCursor = document.querySelector('.sub-cursor');
-        
+  
         this.line1Index = 0;
         this.line2Index = 0;
         this.subIndex = 0;

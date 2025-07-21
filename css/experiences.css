@@ -7,33 +7,24 @@ Styles for the Experiences section
 - Professional styling consistent with the portfolio theme
 */
 
-.work-section {
+.experiences-section {
     background-color: #1a1a1a;
     color: #fff;
     position: relative;
     overflow: hidden;
 }
 
-.work-content {
+.experiences-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     gap: 2rem;
     position: relative;
     z-index: 2;
     padding: 2rem 0;
     width: 100%;
     max-width: 1000px;
-}
-
-.work-text {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-    line-height: 1.6;
-    color: #ccc;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 /* Experience card styling */
@@ -107,9 +98,9 @@ Styles for the Experiences section
     font-weight: 500;
 }
 
-/* Mobile styles for work section */
+/* Mobile styles for experiences section */
 @media (max-width: 768px) {
-    .work-content {
+    .experiences-content {
         padding: 1rem 0;
         gap: 1.5rem;
     }

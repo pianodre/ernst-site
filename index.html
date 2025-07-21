@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/skills.css">
-    <link rel="stylesheet" href="css/work.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/experiences.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/typing-animation.js"></script>
@@ -23,16 +23,17 @@
         </div>
         
         <!-- Hero Container (Always First) -->
-        <div class="container hero-container">
+        <div id="top" class="container hero-container">
             <nav class="sidebar">
                 <div class="profile-box">
                     <img src="content/name-white.png" alt="Dylan's Logo" class="profile-image">
                     <p class="profile-text">Cybersecurity Emphasis</p>
                 </div>
                 <ul class="nav-menu">
+                    <li><a href="#top">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#skills">My Skills</a></li>
-                    <li><a href="#work">Work</a></li>
+                    <li><a href="#skills">Projects</a></li>
+                    <li><a href="#work">Experiences</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="social-icons">
@@ -69,29 +70,114 @@
             <!-- About Section -->
             <section id="about" class="section about-section">
                 <div class="section-container">
-                    <h2 class="section-title">About Me</h2>
+                    <h2 class="section-title"><span class="title-highlight">About</span></h2>
                     <div class="about-content">
-                        <p class="about-text">Content coming soon...</p>
+                        <div class="person-icon">
+                            <i class="far fa-user"></i>
+                        </div>
+                        <p class="about-text">
+                            I'm a Computer Science student at Chapman University with a strong foundation in software development and experience in Python, SQL, C++, and Java, driven by a commitment to continuous learning. I enjoy the blend of creativity and problem-solving that software development offers and am always eager to take on new challenges and expand my skills. Outside of academics, I teach piano, train Brazilian Jiu Jitsu, and stay active, which help me maintain discipline and balance in my life.
+                        </p>
+                        <div class="interest-icons">
+                            <div class="icon-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>Coding</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-music"></i>
+                                <span>Piano</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Security</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-database"></i>
+                                <span>Data</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-fist-raised"></i>
+                                <span>BJJ</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-brain"></i>
+                                <span>Learning</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-running"></i>
+                                <span>Fitness</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-terminal"></i>
+                                <span>CLI</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- My Skills Section -->
-            <section id="skills" class="section skills-section">
+            <!-- Projects Section -->
+            <section id="skills" class="section projects-section">
                 <div class="section-container">
-                    <h2 class="section-title">My Skills</h2>
-                    <div class="skills-content">
-                        <p class="skills-text">Content coming soon...</p>
+                    <h2 class="section-title"><span class="title-highlight">Projects</span></h2>
+                    <div class="projects-content">
+                        <p class="projects-text">Content coming soon...</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Work Section -->
-            <section id="work" class="section work-section">
+            <!-- Experiences Section -->
+            <section id="work" class="section experiences-section">
                 <div class="section-container">
-                    <h2 class="section-title">My Work</h2>
-                    <div class="work-content">
-                        <p class="work-text">Content coming soon...</p>
+                    <h2 class="section-title"><span class="title-highlight">Experiences</span></h2>
+                    <div class="experiences-content">
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="company-name">TRSTxCyber</h3>
+                                <span class="experience-date">Summer 2025</span>
+                            </div>
+                            <h4 class="job-title">Head Cybersecurity Intern</h4>
+                            <p class="experience-description">
+                                Leading a team of 4 interns in cybersecurity projects and initiatives. Responsible for coordinating team efforts, reporting to management, and ensuring project deliverables are met on time with high quality.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="tag">Leadership</span>
+                                <span class="tag">Cybersecurity</span>
+                                <span class="tag">Team Management</span>
+                            </div>
+                        </div>
+                        
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="company-name">Piano Teacher</h3>
+                                <span class="experience-date">2021 - Present</span>
+                            </div>
+                            <h4 class="job-title">Independent Instructor, Mission Viejo</h4>
+                            <p class="experience-description">
+                                Creating accessible and inclusive music education opportunities for students of all ages and skill levels. Developing personalized learning plans tailored to each student's goals and learning style.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="tag">Music Education</span>
+                                <span class="tag">Teaching</span>
+                                <span class="tag">Curriculum Development</span>
+                            </div>
+                        </div>
+                        
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="company-name">Carlson Gracie Irvine</h3>
+                                <span class="experience-date">August 2022 - Present</span>
+                            </div>
+                            <h4 class="job-title">Brazilian Jiu Jitsu Instructor, Tustin</h4>
+                            <p class="experience-description">
+                                Leading youth classes and teaching self-discipline and technique to students aged 4-16. Creating structured training plans and coaching students in competition settings to develop their skills and confidence.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="tag">Youth Coaching</span>
+                                <span class="tag">Martial Arts</span>
+                                <span class="tag">Competition Training</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
