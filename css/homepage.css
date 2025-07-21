@@ -285,7 +285,7 @@ HOME CSS RULES
         white-space: normal;
         word-wrap: break-word;
         overflow-wrap: break-word;
-        hyphens: auto;
+        hyphens: none;
         text-align: center;
     }
 }

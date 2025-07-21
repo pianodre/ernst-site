@@ -2,7 +2,7 @@
 class TypingAnimation {
     constructor() {
         this.line1Text = "Hi, I'm Dylan.";
-        this.line2Text = "A Computer Science Major";
+        this.line2Text = "A Computer\u00A0Science Major";
         this.subText = "At Chapman University";
         this.line1Element = document.getElementById('typing-text-line1');
         this.line2Element = document.getElementById('typing-text-line2');
