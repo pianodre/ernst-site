@@ -12,93 +12,101 @@
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/typing-animation.js"></script>
+    <script src="js/music-notes-animation.js"></script>
 </head>
 <body>
-    <!-- Mobile-only profile box that appears at the top -->
-    <div class="mobile-profile-box">
-        <img src="content/name-white.png" alt="Dylan's Logo" class="profile-image">
-        <p class="profile-text">Cybersecurity Emphasis</p>
-    </div>
-    
-    <div class="container">
-        <nav class="sidebar">
-            <div class="profile-box">
-                <img src="content/name-white.png" alt="Dylan's Logo" class="profile-image">
-                <p class="profile-text">Cybersecurity Emphasis</p>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">My Skills</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="social-icons">
-                <a href="https://github.com/pianodre" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/dylan-ernst-979ab1252" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/dylannernstt/" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-        </nav>
+    <div class="page-wrapper">
+        <!-- Mobile-only profile box that appears at the top -->
+        <div class="mobile-profile-box">
+            <img src="content/name-white.png" alt="Dylan's Logo" class="profile-image">
+            <p class="profile-text">Cybersecurity Emphasis</p>
+        </div>
         
-        <main class="content">
-            <canvas id="matrix-canvas" class="matrix-background"></canvas>
-            <section class="hero">
-                <h1 class="main-heading">
-                    <div class="heading-line">
-                        <span id="typing-text-line1"></span>
-                        <span class="cursor cursor-line1">|</span>
+        <!-- Hero Container (Always First) -->
+        <div class="container hero-container">
+            <nav class="sidebar">
+                <div class="profile-box">
+                    <img src="content/name-white.png" alt="Dylan's Logo" class="profile-image">
+                    <p class="profile-text">Cybersecurity Emphasis</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">My Skills</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </nav>
+            
+            <main class="content">
+                <canvas id="matrix-canvas" class="matrix-background"></canvas>
+                <canvas id="music-notes-canvas" class="music-notes-background"></canvas>
+                <section class="hero">
+                    <h1 class="main-heading">
+                        <div class="heading-line">
+                            <span id="typing-text-line1"></span>
+                            <span class="cursor cursor-line1">|</span>
+                        </div>
+                        <div class="heading-line">
+                            <span id="typing-text-line2"></span>
+                            <span class="cursor cursor-line2">|</span>
+                        </div>
+                    </h1>
+                    <p class="sub-heading">
+                        <span id="sub-typing-text"></span>
+                        <span class="sub-cursor">|</span>
+                    </p>
+                </section>
+            </main>
+        </div>
+
+        <!-- Content Sections (Always After Hero) -->
+        <div class="sections-container">
+            <!-- About Section -->
+            <section id="about" class="section about-section">
+                <div class="section-container">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="about-content">
+                        <p class="about-text">Content coming soon...</p>
                     </div>
-                    <div class="heading-line">
-                        <span id="typing-text-line2"></span>
-                        <span class="cursor cursor-line2">|</span>
-                    </div>
-                </h1>
-                <p class="sub-heading">
-                    <span id="sub-typing-text"></span>
-                    <span class="sub-cursor">|</span>
-                </p>
+                </div>
             </section>
-        </main>
+
+            <!-- My Skills Section -->
+            <section id="skills" class="section skills-section">
+                <div class="section-container">
+                    <h2 class="section-title">My Skills</h2>
+                    <div class="skills-content">
+                        <p class="skills-text">Content coming soon...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Section -->
+            <section id="work" class="section work-section">
+                <div class="section-container">
+                    <h2 class="section-title">My Work</h2>
+                    <div class="work-content">
+                        <p class="work-text">Content coming soon...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section contact-section">
+                <div class="section-container">
+                    <h2 class="section-title">Contact Me</h2>
+                    <div class="contact-content">
+                        <p class="contact-text">Content coming soon...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-
-    <!-- About Section -->
-    <section id="about" class="section about-section">
-        <div class="section-container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p class="about-text">Content coming soon...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- My Skills Section -->
-    <section id="skills" class="section skills-section">
-        <div class="section-container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-content">
-                <p class="skills-text">Content coming soon...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Work Section -->
-    <section id="work" class="section work-section">
-        <div class="section-container">
-            <h2 class="section-title">My Work</h2>
-            <div class="work-content">
-                <p class="work-text">Content coming soon...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="section-container">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="contact-content">
-                <p class="contact-text">Content coming soon...</p>
-            </div>
-        </div>
-    </section>
 
 </body>
 </html>

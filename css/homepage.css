@@ -16,6 +16,23 @@ HOME CSS RULES
     width: 100%;
 }
 
+/* Medium screen adjustments to prevent text clipping */
+@media (max-width: 1200px) and (min-width: 769px) {
+    .hero {
+        max-width: min(45vw, 700px);
+        padding-right: 1rem;
+    }
+    
+    .main-heading {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        word-break: break-word;
+    }
+    
+    .sub-heading {
+        font-size: clamp(0.8rem, 2vw, 1.1rem);
+    }
+}
+
 .main-heading {
     font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
@@ -138,9 +155,33 @@ HOME CSS RULES
     pointer-events: none;
 }
 
+/* Music Notes Animation Canvas */
+.music-notes-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+/* Hero Video Background */
+.hero-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
 .hero {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 /* 5. Animations or effects used only on the homepage */
@@ -221,19 +262,22 @@ HOME CSS RULES
         max-width: 100%;
         padding: 0;
         text-align: center;
+        margin: 1rem 0;
     }
     
     .main-heading {
-        font-size: 2.5rem;
+        font-size: 2rem;
         word-break: normal;
         word-wrap: break-word;
         hyphens: auto;
         text-align: center;
+        margin-bottom: 0.5rem;
     }
     
     .sub-heading {
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-align: center;
+        margin-bottom: 0.5rem;
     }
     
     /* Allow text wrapping on mobile for typing animation */

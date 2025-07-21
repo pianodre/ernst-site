@@ -8,22 +8,10 @@ Styles for the About Me section
 */
 
 .about-section {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    background-color: #1a1a1a;
     color: #fff;
     position: relative;
     overflow: hidden;
-}
-
-.about-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(100, 255, 218, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(100, 255, 218, 0.05) 0%, transparent 50%);
-    pointer-events: none;
 }
 
 .about-content {

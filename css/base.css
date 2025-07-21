@@ -145,6 +145,13 @@ body {
     min-height: 100vh;
 }
 
+/* Medium screen adjustments to prevent text clipping */
+@media (max-width: 1200px) and (min-width: 769px) {
+    .content {
+        padding: 2rem 0 2rem 2rem;
+    }
+}
+
 /* Mobile-only profile box */
 .mobile-profile-box {
     display: none;
@@ -167,9 +174,25 @@ body {
     display: flex;
 }
 
+/* Page wrapper for better mobile control */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.hero-container {
+    order: 1;
+}
+
+.sections-container {
+    order: 2;
+}
+
 /* 7. Responsive basics */
 @media (max-width: 768px) {
-    body {
+    .page-wrapper {
         display: flex;
         flex-direction: column;
     }
@@ -184,10 +207,20 @@ body {
         display: none;
     }
     
-    .container {
+    /* Ensure hero container is always first on mobile */
+    .hero-container {
         flex-direction: column;
         display: flex;
         order: 2;
+        height: auto;
+        min-height: auto;
+    }
+    
+    .content {
+        padding: 1.5rem;
+        min-height: auto;
+        max-height: 50vh;
+        order: 1;
     }
     
     .sidebar {
@@ -195,7 +228,7 @@ body {
         height: auto;
         border-right: none;
         border-bottom: none;
-        order: 3;
+        order: 2;
         padding-top: 1rem;
     }
     
@@ -203,10 +236,9 @@ body {
         margin-top: 1rem;
     }
     
-    .content {
-        padding: 1.5rem;
-        min-height: auto;
-        order: 2;
+    /* Make sure sections appear after the hero container */
+    .sections-container {
+        order: 3;
     }
     
     /* Mobile section styles */
