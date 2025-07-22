@@ -2,9 +2,9 @@
 PROJECTS SECTION CSS
 
 Styles for the Projects section
-- Full viewport height layout
+- Grid layout for project cards
+- Cybersecurity-themed styling with glowing effects
 - Responsive design for mobile and desktop
-- Professional styling consistent with the portfolio theme
 */
 
 .projects-section {
@@ -19,29 +19,159 @@ Styles for the Projects section
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
     position: relative;
     z-index: 2;
     padding: 2rem 0;
+    width: 100%;
 }
 
-.projects-text {
-    font-size: 1.1rem;
+/* Projects Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Project Card Styling */
+.project-card {
+    background-color: rgba(30, 30, 30, 0.7);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+    backdrop-filter: blur(5px);
+    height: 100%;
+    min-height: 250px;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.5);
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.project-header i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: #64ffda;
+}
+
+.project-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+}
+
+.project-description {
+    font-size: 0.95rem;
     line-height: 1.6;
     color: #ccc;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+    background-color: rgba(100, 255, 218, 0.1);
+    color: #64ffda;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(100, 255, 218, 0.3);
+}
+
+.project-link {
+    color: #64ffda;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.project-link i {
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.project-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(100, 255, 218, 0.8);
+}
+
+.project-link:hover i {
+    transform: translateX(3px);
+}
+
+/* Empty Card Styling */
+.empty-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(30, 30, 30, 0.4);
+    border: 1px dashed rgba(100, 255, 218, 0.2);
+    opacity: 0.7;
+}
+
+.empty-card:hover {
+    border-color: rgba(100, 255, 218, 0.4);
+    opacity: 0.9;
+}
+
+.empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    max-width: 800px;
+}
+
+.empty-content i {
+    font-size: 2rem;
+    color: rgba(100, 255, 218, 0.4);
+    margin-bottom: 1rem;
+}
+
+.empty-content p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
 }
 
 /* Mobile styles for projects section */
 @media (max-width: 768px) {
-    .projects-content {
-        padding: 1rem 0;
+    .projects-grid {
+        grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0 1rem;
     }
     
-    .projects-text {
-        font-size: 1rem;
-        text-align: center;
+    .project-card {
+        padding: 1.25rem;
+    }
+    
+    .project-title {
+        font-size: 1.2rem;
     }
 }
