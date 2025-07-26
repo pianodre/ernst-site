@@ -1,75 +1,106 @@
-// Typing Animation for Homepage
+// Enhanced Typing Animation for Homepage
 class TypingAnimation {
     constructor() {
-        this.line1Text = "Hi, I'm Dylan.";
-        this.line2Text = "A Computer\u00A0Science Major";
-        this.subText = "At Chapman University";
-        this.line1Element = document.getElementById('typing-text-line1');
-        this.line2Element = document.getElementById('typing-text-line2');
-        this.subElement = document.getElementById('sub-typing-text');
-        this.line1Cursor = document.querySelector('.cursor-line1');
-        this.line2Cursor = document.querySelector('.cursor-line2');
-        this.subCursor = document.querySelector('.sub-cursor');
+        this.nameText = "Dylan Ernst";
+        this.titleText = "Cybersecurity Enthusiast";
+        this.descriptionText = "Computer Science Major at Chapman University";
+        
+        this.nameElement = document.getElementById('typing-text-name');
+        this.titleElement = document.getElementById('typing-text-title');
+        this.descriptionElement = document.getElementById('typing-text-description');
+        
+        this.nameCursor = document.querySelector('.cursor-name');
+        this.titleCursor = document.querySelector('.cursor-title');
+        this.descriptionCursor = document.querySelector('.cursor-description');
   
-        this.line1Index = 0;
-        this.line2Index = 0;
-        this.subIndex = 0;
+        this.nameIndex = 0;
+        this.titleIndex = 0;
+        this.descriptionIndex = 0;
+        
         this.typingSpeed = 80; // milliseconds per character
-        this.subTypingSpeed = 60;
-        this.pauseBetweenLines = 300; // pause between line 1 and line 2
-        this.pauseBeforeSubtext = 500; // pause before starting subtext
+        this.fastTypingSpeed = 60; // for description
+        this.pauseBetweenSections = 50; // shorter pause between name and title
+        this.pauseBeforeDescription = 200; // shorter pause before description
     }
 
     init() {
-        // Hide line2 cursor and sub-cursor initially
-        this.line2Cursor.classList.add('hidden');
-        this.subCursor.classList.add('hidden');
+        // Hide title and description cursors initially
+        this.titleCursor.classList.add('hidden');
+        this.descriptionCursor.classList.add('hidden');
         
-        // Start typing the first line
-        this.typeLine1();
+
+        
+        // Start with a small delay for dramatic effect
+        setTimeout(() => {
+            this.typeName();
+        }, 500);
     }
 
-    typeLine1() {
-        if (this.line1Index < this.line1Text.length) {
-            this.line1Element.textContent += this.line1Text.charAt(this.line1Index);
-            this.line1Index++;
-            setTimeout(() => this.typeLine1(), this.typingSpeed);
+    typeName() {
+        if (this.nameIndex < this.nameText.length) {
+            this.nameElement.textContent += this.nameText.charAt(this.nameIndex);
+            this.nameIndex++;
+            setTimeout(() => this.typeName(), this.typingSpeed);
         } else {
-            // Line 1 is complete, hide line1 cursor and start line 2 after pause
+            // Name is complete, hide name cursor and start title after pause
             setTimeout(() => {
-                this.line1Cursor.classList.add('hidden');
-                this.line2Cursor.classList.remove('hidden');
-                this.typeLine2();
-            }, this.pauseBetweenLines);
+                this.nameCursor.classList.add('hidden');
+                this.titleCursor.classList.remove('hidden');
+                this.typeTitle();
+            }, this.pauseBetweenSections);
         }
     }
 
-    typeLine2() {
-        if (this.line2Index < this.line2Text.length) {
-            this.line2Element.textContent += this.line2Text.charAt(this.line2Index);
-            this.line2Index++;
-            setTimeout(() => this.typeLine2(), this.typingSpeed);
+    typeTitle() {
+        if (this.titleIndex < this.titleText.length) {
+            this.titleElement.textContent += this.titleText.charAt(this.titleIndex);
+            this.titleIndex++;
+            setTimeout(() => this.typeTitle(), this.typingSpeed);
         } else {
-            // Line 2 is complete, hide line2 cursor and start subtext after pause
+            // Title is complete, hide title cursor and start description after pause
             setTimeout(() => {
-                this.line2Cursor.classList.add('hidden');
-                this.subCursor.classList.remove('hidden');
-                this.typeSubText();
-            }, this.pauseBeforeSubtext);
+                this.titleCursor.classList.add('hidden');
+                this.descriptionCursor.classList.remove('hidden');
+                this.typeDescription();
+            }, this.pauseBeforeDescription);
         }
     }
 
-    typeSubText() {
-        if (this.subIndex < this.subText.length) {
-            this.subElement.textContent += this.subText.charAt(this.subIndex);
-            this.subIndex++;
-            setTimeout(() => this.typeSubText(), this.subTypingSpeed);
+    typeDescription() {
+        if (this.descriptionIndex < this.descriptionText.length) {
+            this.descriptionElement.textContent += this.descriptionText.charAt(this.descriptionIndex);
+            this.descriptionIndex++;
+            setTimeout(() => this.typeDescription(), this.fastTypingSpeed);
         } else {
-            // Subtext is complete, keep cursor blinking
-            // Optionally hide cursor after some time
+            // Description is complete, hide cursor and show hero elements
             setTimeout(() => {
-                this.subCursor.classList.add('hidden');
-            }, 3000); // Hide cursor after 3 seconds
+                this.descriptionCursor.classList.add('hidden');
+                this.showHeroElements();
+            }, 500);
+        }
+    }
+
+    showHeroElements() {
+        // Show CTA buttons with animation
+        const ctaButtons = document.querySelector('.hero-cta');
+        if (ctaButtons) {
+            ctaButtons.classList.add('visible');
+        }
+        
+        // Show floating icons with staggered animation
+        const floatingIcons = document.querySelectorAll('.floating-icon');
+        floatingIcons.forEach((icon, index) => {
+            setTimeout(() => {
+                icon.classList.add('visible');
+            }, index * 200);
+        });
+        
+        // Show scroll indicator
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            setTimeout(() => {
+                scrollIndicator.classList.add('visible');
+            }, 800);
         }
     }
 }

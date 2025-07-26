@@ -46,22 +46,65 @@
             <main class="content">
                 <canvas id="matrix-canvas" class="matrix-background"></canvas>
                 <canvas id="music-notes-canvas" class="music-notes-background"></canvas>
+                
+                <!-- Hero Section with improved layout -->
                 <section class="hero">
-                    <h1 class="main-heading">
-                        <div class="heading-line">
-                            <span id="typing-text-line1"></span>
-                            <span class="cursor cursor-line1">|</span>
+                    <div class="hero-content">
+                        <div class="hero-intro">
+                            <span class="hero-greeting">Hello, I'm</span>
                         </div>
-                        <div class="heading-line">
-                            <span id="typing-text-line2"></span>
-                            <span class="cursor cursor-line2">|</span>
+                        
+                        <h1 class="hero-name">
+                            <span id="typing-text-name"></span>
+                            <span class="cursor cursor-name">|</span>
+                        </h1>
+                        
+                        <div class="hero-title">
+                            <span id="typing-text-title"></span>
+                            <span class="cursor cursor-title">|</span>
                         </div>
-                    </h1>
-                    <p class="sub-heading">
-                        <span id="sub-typing-text"></span>
-                        <span class="sub-cursor">|</span>
-                    </p>
+                        
+                        <p class="hero-description">
+                            <span id="typing-text-description"></span>
+                            <span class="cursor cursor-description">|</span>
+                        </p>
+                        
+                        <div class="hero-cta">
+                            <a href="#about" class="cta-button primary">
+                                <span>Explore My Work</span>
+                                <i class="fas fa-arrow-down"></i>
+                            </a>
+                            <a href="#contact" class="cta-button secondary">
+                                <span>Get In Touch</span>
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating elements for cybersecurity theme -->
+                    <div class="hero-decorations">
+                        <div class="floating-icon" data-delay="0">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="floating-icon" data-delay="0.5">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="floating-icon" data-delay="1">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="floating-icon" data-delay="1.5">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                    </div>
                 </section>
+                
+                <!-- Scroll indicator -->
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <span class="scroll-text">Scroll to explore</span>
+                </div>
             </main>
         </div>
 
