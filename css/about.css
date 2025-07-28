@@ -43,20 +43,27 @@ Styles for the About Me section
     transform: skewX(-15deg);
 }
 
-/* Large person icon */
+/* Large person icon container */
 .person-icon {
-    font-size: 8rem;
-    color: #64ffda;
     margin-bottom: 1.5rem;
-    text-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
     border: 3px solid #64ffda;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 170px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Profile image styling */
+.profile-image-about {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 /* About text paragraph */
@@ -125,7 +132,7 @@ Styles for the About Me section
 }
 
 /* Mobile styles for about section */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .about-content {
         padding: 1.5rem 1rem;
         gap: 2rem;
@@ -138,16 +145,12 @@ Styles for the About Me section
     }
     
     .person-icon {
-        font-size: 6rem;
-        width: 120px;
-        height: 120px;
+        width: 135px;
+        height: 135px;
     }
     
     .interest-icons {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        padding: 1.5rem;
-        margin-top: 2rem;
+        display: none; /* Hide interest icons on mobile */
     }
     
     .icon-item i {

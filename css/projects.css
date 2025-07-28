@@ -160,7 +160,7 @@ Styles for the Projects section
 }
 
 /* Mobile styles for projects section */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -173,5 +173,10 @@ Styles for the Projects section
     
     .project-title {
         font-size: 1.2rem;
+    }
+    
+    /* Hide Future Project boxes on mobile */
+    .empty-card {
+        display: none;
     }
 }

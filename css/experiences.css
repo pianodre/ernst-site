@@ -52,6 +52,20 @@ Styles for the Experiences section
     margin-bottom: 0.5rem;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.expand-icon {
+    display: none !important; /* Hidden on desktop */
+    font-size: 1.2rem;
+    color: #64ffda;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
 .company-name {
     font-size: 1.8rem;
     font-weight: 700;
@@ -99,24 +113,74 @@ Styles for the Experiences section
 }
 
 /* Mobile styles for experiences section */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
+    .experiences-section {
+        min-height: auto; /* Allow section to adjust to content */
+        padding: 1rem 0 5rem 0; /* Add small bottom padding */
+    }
+    
+    .experiences-section .section-container {
+        min-height: auto; /* Override default min-height */
+        padding: 0 1rem; /* Consistent horizontal padding */
+    }
+    
     .experiences-content {
-        padding: 1rem 0;
-        gap: 1.5rem;
+        padding: 0; /* Remove extra padding */
+        gap: 0.5rem; /* Reduce gap between cards */
+        justify-content: flex-start; /* Align to top instead of center */
     }
     
     .experience-card {
-        padding: 1.5rem;
+        padding: 1rem 1.5rem; /* Reduce vertical padding */
+        cursor: pointer;
+        margin-bottom: 0.5rem; /* Small margin between cards */
+    }
+    
+    .experience-card:last-child {
+        margin-bottom: 0; /* Remove margin from last card */
+    }
+    
+    .experience-card[data-expandable] .experience-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+        padding-top: 0;
+    }
+    
+    .experience-card[data-expandable].expanded .experience-content {
+        max-height: 400px; /* Sufficient height for content */
+        opacity: 1;
+        padding-top: 1rem;
+    }
+    
+    /* Ensure section expands when last card is open */
+    .experience-card:last-child.expanded {
+        margin-bottom: 1rem; /* Add bottom margin when last card is expanded */
+    }
+    
+    .expand-icon {
+        display: block !important; /* Show on mobile */
+    }
+    
+    .experience-card.expanded .expand-icon {
+        transform: rotate(180deg);
+    }
+    
+    .experience-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0;
+        cursor: pointer;
+    }
+    
+    .header-right {
+        gap: 0.5rem;
     }
     
     .company-name {
         font-size: 1.5rem;
-    }
-    
-    .experience-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
     }
     
     .experience-date {

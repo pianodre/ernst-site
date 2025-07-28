@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/typing-animation.js"></script>
     <script src="js/music-notes-animation.js"></script>
+    <script src="js/experience-expand.js"></script>
 </head>
 <body>
     <div class="page-wrapper">
@@ -21,6 +22,17 @@
             <img src="content/name-white.png" alt="Dylan's Logo" class="profile-image">
             <p class="profile-text">Cybersecurity Emphasis</p>
         </div>
+        
+        <!-- Mobile-only sticky navigation bar -->
+        <nav class="mobile-nav-bar">
+            <ul class="mobile-nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Projects</a></li>
+                <li><a href="#work">Experiences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
         
         <!-- Hero Container (Always First) -->
         <div id="home" class="container hero-container">
@@ -116,7 +128,7 @@
                     <h2 class="section-title"><span class="title-highlight">About</span></h2>
                     <div class="about-content">
                         <div class="person-icon">
-                            <i class="far fa-user"></i>
+                            <img src="content/me.png" alt="Dylan's Profile" class="profile-image-about">
                         </div>
                         <p class="about-text">
                             I'm a Computer Science student at Chapman University with a strong foundation in software development and experience in Python, SQL, C++, and Java, driven by a commitment to continuous learning. I enjoy the blend of creativity and problem-solving that software development offers and am always eager to take on new challenges and expand my skills. Outside of academics, I teach piano, train Brazilian Jiu Jitsu, and stay active, which help me maintain discipline and balance in my life.
@@ -249,51 +261,66 @@
                 <div class="section-container">
                     <h2 class="section-title"><span class="title-highlight">Experiences</span></h2>
                     <div class="experiences-content">
-                        <div class="experience-card">
-                            <div class="experience-header">
+                        <div class="experience-card" data-expandable>
+                            <div class="experience-header" data-toggle>
                                 <h3 class="company-name">TRSTxCyber</h3>
-                                <span class="experience-date">Summer 2025</span>
+                                <div class="header-right">
+                                    <span class="experience-date">Summer 2025</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
                             </div>
-                            <h4 class="job-title">Head Cybersecurity Intern</h4>
-                            <p class="experience-description">
-                                Leading a team of 4 interns in cybersecurity projects and initiatives. Responsible for coordinating team efforts, reporting to management, and ensuring project deliverables are met on time with high quality.
-                            </p>
-                            <div class="experience-tags">
-                                <span class="tag">Leadership</span>
-                                <span class="tag">Cybersecurity</span>
-                                <span class="tag">Team Management</span>
+                            <div class="experience-content">
+                                <h4 class="job-title">Head Cybersecurity Intern</h4>
+                                <p class="experience-description">
+                                    Leading a team of 4 interns in cybersecurity projects and initiatives. Responsible for coordinating team efforts, reporting to management, and ensuring project deliverables are met on time with high quality.
+                                </p>
+                                <div class="experience-tags">
+                                    <span class="tag">Leadership</span>
+                                    <span class="tag">Cybersecurity</span>
+                                    <span class="tag">Team Management</span>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="experience-card">
-                            <div class="experience-header">
+                        <div class="experience-card" data-expandable>
+                            <div class="experience-header" data-toggle>
                                 <h3 class="company-name">Piano Teacher</h3>
-                                <span class="experience-date">2021 - Present</span>
+                                <div class="header-right">
+                                    <span class="experience-date">2021 - Present</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
                             </div>
-                            <h4 class="job-title">Independent Instructor, Mission Viejo</h4>
-                            <p class="experience-description">
-                                Creating accessible and inclusive music education opportunities for students of all ages and skill levels. Developing personalized learning plans tailored to each student's goals and learning style.
-                            </p>
-                            <div class="experience-tags">
-                                <span class="tag">Music Education</span>
-                                <span class="tag">Teaching</span>
-                                <span class="tag">Curriculum Development</span>
+                            <div class="experience-content">
+                                <h4 class="job-title">Independent Instructor, Mission Viejo</h4>
+                                <p class="experience-description">
+                                    Creating accessible and inclusive music education opportunities for students of all ages and skill levels. Developing personalized learning plans tailored to each student's goals and learning style.
+                                </p>
+                                <div class="experience-tags">
+                                    <span class="tag">Music Education</span>
+                                    <span class="tag">Teaching</span>
+                                    <span class="tag">Curriculum Development</span>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="experience-card">
-                            <div class="experience-header">
+                        <div class="experience-card" data-expandable>
+                            <div class="experience-header" data-toggle>
                                 <h3 class="company-name">Carlson Gracie Irvine</h3>
-                                <span class="experience-date">August 2022 - Present</span>
+                                <div class="header-right">
+                                    <span class="experience-date">August 2022 - Present</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
                             </div>
-                            <h4 class="job-title">Brazilian Jiu Jitsu Instructor, Tustin</h4>
-                            <p class="experience-description">
-                                Leading youth classes and teaching self-discipline and technique to students aged 4-16. Creating structured training plans and coaching students in competition settings to develop their skills and confidence.
-                            </p>
-                            <div class="experience-tags">
-                                <span class="tag">Youth Coaching</span>
-                                <span class="tag">Martial Arts</span>
-                                <span class="tag">Competition Training</span>
+                            <div class="experience-content">
+                                <h4 class="job-title">Brazilian Jiu Jitsu Instructor, Tustin</h4>
+                                <p class="experience-description">
+                                    Leading youth classes and teaching self-discipline and technique to students aged 4-16. Creating structured training plans and coaching students in competition settings to develop their skills and confidence.
+                                </p>
+                                <div class="experience-tags">
+                                    <span class="tag">Youth Coaching</span>
+                                    <span class="tag">Martial Arts</span>
+                                    <span class="tag">Competition Training</span>
+                                </div>
                             </div>
                         </div>
                     </div>

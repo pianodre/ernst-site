@@ -478,7 +478,7 @@ ENHANCED HOME CSS RULES
 
 
 /* Mobile styles for hero section */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .hero {
         max-width: 100%;
         padding: 1rem 0;
@@ -560,6 +560,15 @@ ENHANCED HOME CSS RULES
     
     .cursor-description {
         font-size: 1rem;
+    }
+    
+    /* Fix profile-box width on mobile */
+    .profile-box {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 
