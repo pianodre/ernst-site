@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lora', serif;
+    background-image: url('../content/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    color: #2c2c2c;
+    line-height: 1.6;
+    padding: 40px 0;
+}
+
+.container {
+    max-width: 800px;
+    width: calc(100% - 80px);
+    margin: 40px auto;
+    padding: 25px 20px;
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.recital-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #d4af37;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+}
+
+.date-venue {
+    margin-top: 15px;
+}
+
+.date {
+    font-size: 1.3rem;
+    color: #666;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.program {
+    padding: 0 15px;
+}
+
+.program-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.composer {
+    margin-bottom: 15px;
+}
+
+.composer h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 10px;
+    border-left: 4px solid #d4af37;
+    padding-left: 15px;
+}
+
+.piece {
+    margin-left: 15px;
+}
+
+.piece h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #444;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.movements {
+    list-style: none;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.movements li {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.movements li:before {
+    content: "♪";
+    position: absolute;
+    left: 0;
+    color: #d4af37;
+    font-size: 1.2rem;
+}
+
+.special {
+    color: #d4af37;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.intermission, .encore {
+    text-align: center;
+    margin: 25px 0;
+    padding: 15px 0;
+}
+
+.intermission h2, .encore h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #8b6914;
+    letter-spacing: 3px;
+    border: none;
+    padding: 0;
+    position: relative;
+}
+
+.intermission h2:before, .intermission h2:after,
+.encore h2:before, .encore h2:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background-color: #d4af37;
+}
+
+.intermission h2:before, .encore h2:before {
+    left: -80px;
+}
+
+.intermission h2:after, .encore h2:after {
+    right: -80px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: calc(100% - 40px);
+        margin: 20px auto;
+        padding: 30px 15px;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .composer h2 {
+        font-size: 1.5rem;
+    }
+    
+    .piece h3 {
+        font-size: 1.1rem;
+    }
+    
+    .movements li {
+        font-size: 1rem;
+    }
+    
+    .intermission h2:before, .intermission h2:after,
+    .encore h2:before, .encore h2:after {
+        width: 40px;
+    }
+    
+    .intermission h2:before, .encore h2:before {
+        left: -50px;
+    }
+    
+    .intermission h2:after, .encore h2:after {
+        right: -50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: calc(100% - 20px);
+        margin: 10px auto;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .intermission h2:before, .intermission h2:after,
+    .encore h2:before, .encore h2:after {
+        display: none;
+    }
+}
