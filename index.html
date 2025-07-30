@@ -14,6 +14,7 @@
     <script src="js/typing-animation.js"></script>
     <script src="js/music-notes-animation.js"></script>
     <script src="js/experience-expand.js"></script>
+    <script src="js/hamburger-menu.js"></script>
 </head>
 <body>
     <div class="page-wrapper">
@@ -25,13 +26,20 @@
         
         <!-- Mobile-only sticky navigation bar -->
         <nav class="mobile-nav-bar">
-            <ul class="mobile-nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Projects</a></li>
-                <li><a href="#work">Experiences</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="mobile-nav-container">
+                <button class="hamburger-menu" id="hamburger-toggle" aria-label="Toggle navigation menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul class="mobile-nav-menu" id="mobile-nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Projects</a></li>
+                    <li><a href="#work">Experiences</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </nav>
         
         <!-- Hero Container (Always First) -->
