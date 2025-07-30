@@ -187,10 +187,12 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.2rem;
     margin: 0;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
     list-style: none;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .mobile-nav-menu li {
@@ -321,5 +323,19 @@ body {
     .section-title {
         font-size: 2.5rem;
         margin-bottom: 2rem;
+    }
+}
+
+/* Very small screens - center navigation */
+@media (max-width: 480px) {
+    .mobile-nav-menu {
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+    }
+    
+    .mobile-nav-menu a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
     }
 }
