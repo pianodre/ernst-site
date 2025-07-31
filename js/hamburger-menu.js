@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Close menu on window resize if screen becomes larger
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 480) {
+            if (window.innerWidth > 768) {
                 hamburgerToggle.classList.remove('active');
                 mobileNavMenu.classList.remove('active');
             }

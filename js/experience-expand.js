@@ -6,7 +6,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on mobile
     function isMobile() {
-        return window.innerWidth <= 1100;
+        return window.innerWidth <= 768;
     }
     
     // Get all expandable experience cards
@@ -15,29 +15,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize cards based on screen size
     function initializeCards() {
         experienceCards.forEach(card => {
-            const toggle = card.querySelector('[data-toggle]');
+            const header = card.querySelector('.experience-header');
             const content = card.querySelector('.experience-content');
             
             if (isMobile()) {
                 // On mobile, collapse all cards initially
                 card.classList.remove('expanded');
                 
-                // Add click event listener
-                toggle.addEventListener('click', function(e) {
+                // Add click event listener to entire header
+                header.addEventListener('click', function(e) {
                     e.preventDefault();
                     toggleCard(card);
                 });
                 
-                // Make header clickable
-                toggle.style.cursor = 'pointer';
+                // Make entire header clickable
+                header.style.cursor = 'pointer';
             } else {
                 // On desktop, ensure all cards are expanded and remove click handlers
                 card.classList.add('expanded');
-                toggle.style.cursor = 'default';
+                header.style.cursor = 'default';
                 
-                // Remove click event listeners
-                const newToggle = toggle.cloneNode(true);
-                toggle.parentNode.replaceChild(newToggle, toggle);
+                // Remove click event listeners by cloning the header
+                const newHeader = header.cloneNode(true);
+                header.parentNode.replaceChild(newHeader, header);
             }
         });
     }
