@@ -154,12 +154,7 @@ body {
     width: calc(100% - 15vw); /* Adjust width to account for sidebar */
 }
 
-/* Medium screen adjustments to prevent text clipping */
-@media (max-width: 1200px) and (min-width: 769px) {
-    .content {
-        padding: 2rem 0 2rem 2rem;
-    }
-}
+
 
 /* Mobile-only profile box */
 .mobile-profile-box {
