@@ -2,7 +2,7 @@
 class TypingAnimation {
     constructor() {
         this.nameText = "Dylan Ernst";
-        this.titleText = "Cybersecurity Enthusiast";
+        this.titleText = "Software Engineer";
         this.descriptionText = "Computer Science Major at Chapman University";
         
         this.nameElement = document.getElementById('typing-text-name');

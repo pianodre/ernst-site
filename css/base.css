@@ -144,14 +144,14 @@ body {
 
 .content {
     flex: 1;
-    padding: 2rem 0 2rem 4rem;
+    padding: 2rem 2rem 2rem 4rem; /* Added right padding for safety */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    margin-left: 15vw; /* Match the sidebar width */
-    width: calc(100% - 15vw); /* Adjust width to account for sidebar */
+    margin-left: max(15vw, 200px); /* Use larger of 15vw or 200px */
+    width: calc(100% - max(15vw, 200px)); /* Adjust width to account for sidebar */
 }
 
 
@@ -280,13 +280,38 @@ body {
 
 .sections-container {
     order: 2;
-    margin-left: 15vw; /* Match the sidebar width */
-    width: calc(100% - 15vw); /* Adjust width to account for sidebar */
-    max-width: calc(100% - 15vw);
+    margin-left: max(15vw, 200px); /* Use larger of 15vw or 200px */
+    width: calc(100% - max(15vw, 200px)); /* Adjust width to account for sidebar */
+    max-width: calc(100% - max(15vw, 200px));
     overflow-x: hidden;
 }
 
 /* 7. Responsive basics */
+
+/* Intermediate screen sizes - prevent content clipping with sidebar */
+@media (max-width: 1333px) and (min-width: 769px) {
+    .sidebar {
+        width: 200px; /* Fixed width instead of vw to prevent clipping */
+        min-width: 200px;
+    }
+    
+    .content {
+        margin-left: 200px; /* Match fixed sidebar width */
+        width: calc(100% - 200px);
+        padding-left: 2rem; /* Add extra buffer */
+    }
+    
+    .sections-container {
+        margin-left: 200px; /* Match fixed sidebar width */
+        width: calc(100% - 200px);
+        max-width: calc(100% - 200px);
+    }
+    
+    .section-container {
+        padding: 0 1.5rem; /* Reduce padding on smaller screens */
+    }
+}
+
 @media (max-width: 768px) {
     /* Ensure no horizontal overflow on mobile */
     html, body {
