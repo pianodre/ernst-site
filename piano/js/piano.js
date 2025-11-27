@@ -67,19 +67,54 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form submission handler (placeholder - requires backend)
     const contactForm = document.querySelector('.contact-form');
-    
+    const successModal = document.getElementById('success-modal');
+    const successModalClose = document.getElementById('success-modal-close');
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        const showSuccessModal = () => {
+            if (!successModal) return;
+            successModal.classList.add('active');
+            successModal.setAttribute('aria-hidden', 'false');
+        };
+
+        const hideSuccessModal = () => {
+            if (!successModal) return;
+            successModal.classList.remove('active');
+            successModal.setAttribute('aria-hidden', 'true');
+        };
+
+        if (successModalClose) {
+            successModalClose.addEventListener('click', hideSuccessModal);
+        }
+
+        successModal?.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                hideSuccessModal();
+            }
+        });
+
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Collect form data
             const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // For now, just show an alert
-            // Replace this with actual form submission logic
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: contactForm.method,
+                    headers: {
+                        Accept: 'application/json'
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    contactForm.reset();
+                    showSuccessModal();
+                } else {
+                    console.error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error', error);
+            }
         });
     }
 });
