@@ -1,1 +1,314 @@
-<!-- piano.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dylan Ernst | Piano Lessons</title>
+    <link rel="stylesheet" href="../css/piano.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Dylan Ernst</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#lessons">Lessons</a></li>
+                <li><a href="#studio">Studio</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Private Piano Instruction</p>
+            <h1 class="hero-title">Learn Piano with Dylan Ernst</h1>
+            <p class="hero-description">Personalized lessons for students of all ages and skill levels in Los Angles and Orange County, CA</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">Book a Lesson</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="../../content/piano-face.JPEG" alt="Dylan Ernst - Piano Teacher">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="about-text">
+                        With 16 years of piano experience and a passion for music education, I provide personalized instruction tailored to each student's goals and learning style. Whether you're a complete beginner or looking to refine your technique, I'm here to guide you on your musical journey.
+                    </p>
+                    <p class="about-text">
+                        I believe that learning piano should be enjoyable and rewarding. My teaching philosophy combines classical technique with practical skills, ensuring students develop a strong foundation while exploring music they love. Each year we celebrate progress with a studio-wide recital every May.
+                    </p>
+                    <ul class="about-highlights">
+                        <li><i class="fas fa-check"></i> 16 years of piano experience</li>
+                        <li><i class="fas fa-check"></i> Certificate of Merit graduate</li>
+                        <li><i class="fas fa-check"></i> Teaching since 2019</li>
+                        <li><i class="fas fa-check"></i> All ages and skill levels welcome</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section id="lessons" class="lessons">
+        <div class="container">
+            <h2 class="section-title center">Lesson Options</h2>
+            <p class="section-subtitle">Flexible scheduling to fit your lifestyle</p>
+            
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div class="lesson-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Beginner Lessons</h3>
+                    <p>Perfect for students just starting their piano journey. Learn fundamentals, note reading, and basic technique.</p>
+                    <ul class="lesson-features">
+                        <li>Ages 5 and up</li>
+                        <li>No experience required</li>
+                        <li>30 or 45-minute sessions</li>
+                    </ul>
+                </div>
+                
+                <div class="lesson-card featured">
+                    <div class="lesson-badge">Most Popular</div>
+                    <div class="lesson-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Intermediate Lessons</h3>
+                    <p>Build on your foundation with more advanced repertoire, music theory, and expressive playing techniques.</p>
+                    <ul class="lesson-features">
+                        <li>1-3 years experience</li>
+                        <li>Expanded repertoire</li>
+                        <li>45 or 60-minute sessions</li>
+                    </ul>
+                </div>
+                
+                <div class="lesson-card">
+                    <div class="lesson-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Advanced Lessons</h3>
+                    <p>Refine your artistry with challenging pieces, performance preparation, and advanced interpretation.</p>
+                    <ul class="lesson-features">
+                        <li>3+ years experience</li>
+                        <li>Performance coaching</li>
+                        <li>60-minute sessions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pricing-note">
+                <p><strong>Rates:</strong> $30/30min | $45/45min | $60/60min</p>
+                <p class="pricing-subtext">In-home lessons available (+$10 travel fee)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Highlights Section -->
+    <section id="studio" class="videos">
+        <div class="container">
+            <h2 class="section-title center">Studio Experience</h2>
+            <p class="section-subtitle">A supportive environment with year-round training and our annual May recital</p>
+            
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <img src="../../content/piano-playing.JPG" alt="Private lesson space">
+                        <div class="play-button">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <span class="placeholder-text">Private Studio</span>
+                    </div>
+                    <h3>One-on-One Instruction</h3>
+                    <p>Customized lesson plans, clear milestones, and a calm studio atmosphere designed to help every student feel confident.</p>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <img src="../../content/piano-hand-up.jpg" alt="Recital performance">
+                        <div class="play-button">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <span class="placeholder-text">Annual May Recital</span>
+                    </div>
+                    <h3>Performance Opportunities</h3>
+                    <p>Students prepare curated repertoire for our yearly May recital plus seasonal showcases that build confidence on stage.</p>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-placeholder">
+                        <img src="../../content/masterclass.png" alt="Community masterclass">
+                        <div class="play-button">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="placeholder-text">Community Events</span>
+                    </div>
+                    <h3>Workshops & Masterclasses</h3>
+                    <p>Group lessons, collaborative masterclasses, and additional performance opportunities throughout the year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title center">Student Reviews</h2>
+            <p class="section-subtitle">What my students and their families are saying</p>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"[Your review text here. Example: Dylan is an amazing teacher! My daughter has improved so much in just a few months. He's patient, encouraging, and makes learning fun.]"</p>
+                    <div class="review-author">
+                        <strong>[Parent/Student Name]</strong>
+                        <span>[Student age/level, e.g., "Parent of 10-year-old student"]</span>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"[Your review text here. Example: I started as a complete beginner at age 30 and Dylan made me feel comfortable from day one. Highly recommend!]"</p>
+                    <div class="review-author">
+                        <strong>[Student Name]</strong>
+                        <span>[Details, e.g., "Adult beginner student"]</span>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"[Your review text here. Example: Professional, knowledgeable, and genuinely cares about his students' progress. Best piano teacher in the area!]"</p>
+                    <div class="review-author">
+                        <strong>[Parent/Student Name]</strong>
+                        <span>[Details]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="contact-description">Ready to start your piano journey? Reach out to schedule your first lesson.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong>
+                                <p>Los Angeles & Orange County, CA</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p><a href="mailto:dylanernstr@gmail.com">dylanernstr@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <p><a href="tel:+19499333607">(949) 933-3607</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-availability">
+                        <h4>Availability</h4>
+                        <p>Tuesdays, Fridays, Saturdays & Sundays</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Experience Level</label>
+                            <select id="experience" name="experience">
+                                <option value="">Select your level</option>
+                                <option value="beginner">Beginner (No experience)</option>
+                                <option value="some">Some experience (1-2 years)</option>
+                                <option value="intermediate">Intermediate (3-5 years)</option>
+                                <option value="advanced">Advanced (5+ years)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell me about your goals or any questions you have..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Dylan Ernst Piano Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/piano.js"></script>
+</body>
+</html>
