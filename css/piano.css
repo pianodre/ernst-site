@@ -185,7 +185,7 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('../../content/background.jpg') center/cover no-repeat;
+    background: url('../content/background.jpg') center/cover no-repeat;
     opacity: 0.15;
 }
 
