@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dylan Ernst | Piano Lessons</title>
     <link rel="stylesheet" href="css/piano.css">
+    <link rel="stylesheet" href="css/reviews.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -178,8 +179,12 @@
             <h2 class="section-title center">Student Reviews</h2>
             <p class="section-subtitle">What my students and their families are saying</p>
             
+            <div class="review-cta-container">
+                <button class="btn btn-primary" id="leave-review-btn">Leave a Review</button>
+            </div>
+            
             <div class="reviews-grid">
-                <div class="review-card">
+                <div class="review-card expandable" data-expandable="true">
                     <div class="review-stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -187,10 +192,16 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="review-text">"[Your review text here. Example: Dylan is an amazing teacher! My daughter has improved so much in just a few months. He's patient, encouraging, and makes learning fun.]"</p>
+                    <div class="review-text-container collapsed">
+                        <p class="review-text">"Dylan has been teaching my son that's 10 YO for the last 3 years. Prior to Dylan my son had other instructors that didn't encourage and instill fun in learning playing piano. Since then my son has performed and has thrived and enjoyed playing piano as a hobby. I'm so grateful to have Dylan part of our sons and our lives. He is incredibly gifted and is patient kind and thoughtful. In addition Dylan is responsive and accountable. I highly recommend Dylan for any level of learning. I'm actually going to start lessons myself after watching my son's growth. "</p>
+                    </div>
+                    <button class="review-expand-btn" aria-label="Expand review">
+                        <span class="expand-text">Read more</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                     <div class="review-author">
-                        <strong>[Parent/Student Name]</strong>
-                        <span>[Student age/level, e.g., "Parent of 10-year-old student"]</span>
+                        <strong>May</strong>
+                        <span>Parent of 10-year-old student</span>
                     </div>
                 </div>
                 
@@ -314,6 +325,75 @@
         </div>
     </div>
 
+    <!-- Review Modal -->
+    <div class="modal-overlay" id="review-modal" aria-hidden="true">
+        <div class="modal-content modal-form" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+            <button class="modal-close" id="review-modal-close" aria-label="Close review form">
+                <span>&times;</span>
+            </button>
+            <h3 id="review-modal-title">Leave a Review</h3>
+            <p class="modal-description">Share your experience with Dylan's piano lessons</p>
+            
+            <form class="review-form" id="review-form" action="https://formspree.io/f/xeoykopa" method="POST">
+                <div class="form-group">
+                    <label for="reviewer-name">Your Name *</label>
+                    <input type="text" id="reviewer-name" name="reviewer-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewer-email">Your Email *</label>
+                    <input type="email" id="reviewer-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Rating *</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5" required>
+                        <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-name">Student Name</label>
+                    <input type="text" id="student-name" name="student-name" placeholder="If different from your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="review-text">Your Review *</label>
+                    <textarea id="review-text" name="review" rows="6" placeholder="Tell us about your experience..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Review Success Modal -->
+    <div class="modal-overlay" id="review-success-modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="review-success-modal-title">
+            <button class="modal-close" id="review-success-modal-close" aria-label="Close success message">
+                <span>&times;</span>
+            </button>
+            <div class="modal-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <h3 id="review-success-modal-title">Review Submitted!</h3>
+            <p>Thank you for your feedback! Your review will be posted shortly.</p>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -324,5 +404,6 @@
     </footer>
 
     <script src="js/piano.js"></script>
+    <script src="js/reviews.js"></script>
 </body>
 </html>

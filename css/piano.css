@@ -521,58 +521,6 @@ section {
     font-size: 0.9rem;
 }
 
-/* ===== REVIEWS SECTION ===== */
-.reviews {
-    background-color: #fafafa;
-}
-
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
-.review-card {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-}
-
-.review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.review-stars {
-    margin-bottom: 1rem;
-}
-
-.review-stars i {
-    color: #b8860b;
-    font-size: 1rem;
-}
-
-.review-text {
-    color: #555;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
-}
-
-.review-author strong {
-    display: block;
-    color: #1a1a1a;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-}
-
-.review-author span {
-    color: #888;
-    font-size: 0.9rem;
-}
-
 /* ===== CONTACT SECTION ===== */
 .contact {
     background-color: #fff;
@@ -723,6 +671,8 @@ section {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -731,6 +681,7 @@ section {
     transition: opacity 0.3s ease;
     z-index: 2000;
     padding: 1.5rem;
+    overflow-y: auto;
 }
 
 .modal-overlay.active {
@@ -747,6 +698,27 @@ section {
     padding: 2.5rem 2rem;
     text-align: center;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    margin: auto;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-content.modal-form {
+    max-width: 550px;
+    text-align: left;
+}
+
+.modal-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .modal-icon {
@@ -801,8 +773,7 @@ section {
     }
     
     .lessons-grid,
-    .videos-grid,
-    .reviews-grid {
+    .videos-grid {
         grid-template-columns: 1fr;
         max-width: 500px;
         margin-left: auto;
