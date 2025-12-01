@@ -47,7 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!reviewModal) return;
         reviewModal.classList.add('active');
         reviewModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        // Only lock body scroll on desktop to prevent issues on mobile
+        if (window.innerWidth > 768) {
+            document.body.style.overflow = 'hidden';
+        }
     };
     
     const hideReviewModal = () => {
