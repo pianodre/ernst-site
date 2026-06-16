@@ -35,6 +35,16 @@ body {
     border-bottom: 2px solid #d4af37;
 }
 
+.recital-poster {
+    display: block;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    margin: 0 auto 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
 .main-title {
     font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
