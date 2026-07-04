@@ -5,6 +5,23 @@ const popupBody = document.getElementById("popupBody");
 
 const iconButtons = document.querySelectorAll(".icon-button");
 
+const hidePopup = () => {
+  overlay.classList.remove("visible");
+  const onFade = (event) => {
+    if (event.target === overlay) {
+      overlay.style.display = "none";
+      overlay.removeEventListener("transitionend", onFade);
+    }
+  };
+  overlay.addEventListener("transitionend", onFade);
+  // Fallback in case transitions are disabled (e.g. reduced motion)
+  setTimeout(() => {
+    if (!overlay.classList.contains("visible")) {
+      overlay.style.display = "none";
+    }
+  }, 300);
+};
+
 iconButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
     const title = button.dataset.title || `Temp ${index + 1} Title`;
@@ -14,46 +31,52 @@ iconButtons.forEach((button, index) => {
     popupBody.innerHTML = body;
 
     const popupCard = document.querySelector(".popupCard");
-    
+
     overlay.style.display = "flex";
-    
+
     requestAnimationFrame(() => {
       let anchorElement;
-      
+
       if (index < 3) {
         anchorElement = document.getElementById("anchor-first-half");
       } else {
         anchorElement = document.getElementById("anchor-second-half");
       }
-      
+
       if (anchorElement) {
         const anchorRect = anchorElement.getBoundingClientRect();
         const popupHeight = popupCard.offsetHeight;
-        
+
         const anchorCenter = anchorRect.top + (anchorRect.height / 2);
         let topPosition = anchorCenter + window.scrollY - (popupHeight / 2);
-        
+
         if (index >= 3) {
           topPosition -= 200;
         }
-        
+
         const minTop = window.scrollY + 20;
         const maxTop = window.scrollY + window.innerHeight - popupHeight - 20;
-        
+
         topPosition = Math.max(minTop, Math.min(topPosition, maxTop));
-        
+
         popupCard.style.marginTop = `${topPosition}px`;
       }
+
+      overlay.classList.add("visible");
     });
   });
 });
 
-closePopupButton.addEventListener("click", () => {
-  overlay.style.display = "none";
-});
+closePopupButton.addEventListener("click", hidePopup);
 
 overlay.addEventListener("click", (event) => {
   if (event.target === overlay) {
-    overlay.style.display = "none";
+    hidePopup();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    hidePopup();
   }
 });

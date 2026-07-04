@@ -64,6 +64,7 @@
 /* Expandable Review Styles */
 .review-text-container {
     position: relative;
+    overflow: hidden;
     transition: max-height 0.4s ease;
 }
 
@@ -117,6 +118,15 @@
 }
 
 .review-card:not(.expandable) .review-expand-btn {
+    display: none;
+}
+
+/* Reviews short enough to fit don't need a Read more button */
+.review-card.no-overflow .review-expand-btn {
+    display: none;
+}
+
+.review-card.no-overflow .review-text-container.collapsed::after {
     display: none;
 }
 

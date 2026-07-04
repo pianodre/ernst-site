@@ -12,6 +12,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 32px;
 }
 
 body {
@@ -58,17 +59,27 @@ img {
     right: 0;
     z-index: 1000;
     background-color: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: none;
     backdrop-filter: blur(10px);
+    transition: box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1.15rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: padding 0.3s ease;
+}
+
+.navbar.scrolled .nav-container {
+    padding: 0.75rem 2rem;
 }
 
 .nav-logo {
@@ -102,11 +113,13 @@ img {
     transition: width 0.3s ease;
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a.active {
     color: #1a1a1a;
 }
 
-.nav-menu a:hover::after {
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
     width: 100%;
 }
 
@@ -179,6 +192,10 @@ img {
     padding: 6rem 2rem 4rem;
 }
 
+.hero {
+    overflow: hidden;
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -187,6 +204,7 @@ img {
     bottom: 0;
     background: url('../content/background.jpg') center/cover no-repeat;
     opacity: 0.15;
+    animation: hero-zoom 20s ease-out both;
 }
 
 .hero-content {
@@ -201,12 +219,14 @@ img {
     letter-spacing: 3px;
     color: #b8860b;
     margin-bottom: 1rem;
+    animation: hero-fade-up 0.8s ease 0.1s both;
 }
 
 .hero-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     margin-bottom: 1.5rem;
     font-weight: 700;
+    animation: hero-fade-up 0.8s ease 0.25s both;
 }
 
 .hero-description {
@@ -216,6 +236,7 @@ img {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    animation: hero-fade-up 0.8s ease 0.4s both;
 }
 
 .hero-cta {
@@ -223,6 +244,54 @@ img {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    animation: hero-fade-up 0.8s ease 0.55s both;
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    animation: hero-fade-in 0.8s ease 1s both;
+}
+
+@keyframes hero-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-scroll i {
+    display: block;
+    animation: scroll-bounce 2s ease-in-out 1.8s infinite;
+}
+
+.hero-scroll:hover {
+    color: #b8860b;
+}
+
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-zoom {
+    from { transform: scale(1.08); }
+    to { transform: scale(1); }
+}
+
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
 }
 
 /* ===== SECTION STYLES ===== */
@@ -238,6 +307,16 @@ section {
 
 .section-title.center {
     text-align: center;
+}
+
+.section-title.center::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 3px;
+    margin: 1rem auto 0;
+    background-color: #b8860b;
+    border-radius: 2px;
 }
 
 .section-subtitle {
@@ -363,6 +442,11 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.lesson-card:hover .lesson-icon {
+    transform: translateY(-4px) scale(1.06);
 }
 
 .lesson-card.featured .lesson-icon {
@@ -763,6 +847,64 @@ section {
 
 .modal-close:hover {
     color: #333;
+}
+
+/* ===== SCROLL REVEAL ===== */
+/* Gated on html.js so content stays visible if JavaScript fails to load */
+html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+html.js [data-reveal][data-reveal-delay="1"] {
+    transition-delay: 0.15s;
+}
+
+html.js [data-reveal][data-reveal-delay="2"] {
+    transition-delay: 0.3s;
+}
+
+html.js [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-height: 640px) {
+    .hero-scroll {
+        display: none;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero-overlay,
+    .hero-subtitle,
+    .hero-title,
+    .hero-description,
+    .hero-cta,
+    .hero-scroll,
+    .hero-scroll i {
+        animation: none;
+    }
+
+    html.js [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .btn,
+    .lesson-card,
+    .lesson-icon,
+    .play-button,
+    .review-card {
+        transition: none;
+    }
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dylan Ernst | Piano Lessons</title>
+    <meta name="description" content="Private piano lessons in Orange County, CA with Dylan Ernst. Personalized instruction for all ages and skill levels, from beginner to advanced.">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:title" content="Dylan Ernst | Piano Lessons">
+    <meta property="og:description" content="Private piano lessons in Orange County, CA. Personalized instruction for all ages and skill levels.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎹</text></svg>">
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="css/piano.css">
     <link rel="stylesheet" href="css/reviews.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,16 +51,19 @@
                 <a href="#about" class="btn btn-secondary">Learn More</a>
             </div>
         </div>
+        <a href="#about" class="hero-scroll" aria-label="Scroll to About section">
+            <i class="fas fa-chevron-down"></i>
+        </a>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-image">
-                    <img src="content/piano-face.JPEG" alt="Dylan Ernst - Piano Teacher">
+                <div class="about-image" data-reveal>
+                    <img src="content/piano-face.JPEG" alt="Dylan Ernst - Piano Teacher" loading="lazy" decoding="async">
                 </div>
-                <div class="about-content">
+                <div class="about-content" data-reveal data-reveal-delay="1">
                     <h2 class="section-title">About Me</h2>
                     <p class="about-text">
                         With 16 years of piano experience and a passion for music education, I provide personalized instruction tailored to each student's goals and learning style. Whether you're a complete beginner or looking to refine your technique, I'm here to guide you on your musical journey.
@@ -77,11 +87,11 @@
     <!-- Lessons Section -->
     <section id="lessons" class="lessons">
         <div class="container">
-            <h2 class="section-title center">Lesson Options</h2>
-            <p class="section-subtitle">Flexible scheduling to fit your lifestyle</p>
-            
+            <h2 class="section-title center" data-reveal>Lesson Options</h2>
+            <p class="section-subtitle" data-reveal>Flexible scheduling to fit your lifestyle</p>
+
             <div class="lessons-grid">
-                <div class="lesson-card">
+                <div class="lesson-card" data-reveal>
                     <div class="lesson-icon">
                         <i class="fas fa-child"></i>
                     </div>
@@ -94,7 +104,7 @@
                     </ul>
                 </div>
                 
-                <div class="lesson-card featured">
+                <div class="lesson-card featured" data-reveal data-reveal-delay="1">
                     <div class="lesson-badge">Most Popular</div>
                     <div class="lesson-icon">
                         <i class="fas fa-music"></i>
@@ -108,7 +118,7 @@
                     </ul>
                 </div>
                 
-                <div class="lesson-card">
+                <div class="lesson-card" data-reveal data-reveal-delay="2">
                     <div class="lesson-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
@@ -122,7 +132,7 @@
                 </div>
             </div>
 
-            <div class="pricing-note">
+            <div class="pricing-note" data-reveal>
                 <p><strong>Rates:</strong> $30/30min | $45/45min | $60/60min</p>
                 <p class="pricing-subtext">In-home lessons available (+$10 travel fee)</p>
             </div>
@@ -132,13 +142,13 @@
     <!-- Studio Highlights Section -->
     <section id="studio" class="videos">
         <div class="container">
-            <h2 class="section-title center">Studio Experience</h2>
-            <p class="section-subtitle">A supportive environment with year-round training and our annual May recital</p>
-            
+            <h2 class="section-title center" data-reveal>Studio Experience</h2>
+            <p class="section-subtitle" data-reveal>A supportive environment with year-round training and our annual May recital</p>
+
             <div class="videos-grid">
-                <div class="video-card">
+                <div class="video-card" data-reveal>
                     <div class="video-placeholder">
-                        <img src="content/piano-playing.JPG" alt="Dylan Ernst at the piano">
+                        <img src="content/piano-playing.JPG" alt="Dylan Ernst at the piano" loading="lazy" decoding="async">
                         <div class="play-button">
                             <i class="fas fa-music"></i>
                         </div>
@@ -148,9 +158,9 @@
                     <p>Customized lesson plans, clear milestones, and a calm studio atmosphere designed to help every student feel confident.</p>
                 </div>
                 
-                <div class="video-card">
+                <div class="video-card" data-reveal data-reveal-delay="1">
                     <div class="video-placeholder">
-                        <img src="content/piano-hand-up.jpg" alt="Recital performance">
+                        <img src="content/piano-hand-up.jpg" alt="Recital performance" loading="lazy" decoding="async">
                         <div class="play-button">
                             <i class="fas fa-calendar-alt"></i>
                         </div>
@@ -160,9 +170,9 @@
                     <p>Students prepare curated repertoire for our yearly May recital plus seasonal showcases that build confidence on stage.</p>
                 </div>
                 
-                <div class="video-card">
+                <div class="video-card" data-reveal data-reveal-delay="2">
                     <div class="video-placeholder">
-                        <img src="content/studio-collaboration.jpg" alt="Dylan Ernst performing at a recital">
+                        <img src="content/studio-collaboration.jpg" alt="Dylan Ernst performing at a recital" loading="lazy" decoding="async">
                         <div class="play-button">
                             <i class="fas fa-users"></i>
                         </div>
@@ -178,15 +188,15 @@
     <!-- Reviews Section -->
     <section id="reviews" class="reviews">
         <div class="container">
-            <h2 class="section-title center">Student Reviews</h2>
-            <p class="section-subtitle">What my students and their families are saying</p>
-            
-            <div class="review-cta-container">
+            <h2 class="section-title center" data-reveal>Student Reviews</h2>
+            <p class="section-subtitle" data-reveal>What my students and their families are saying</p>
+
+            <div class="review-cta-container" data-reveal>
                 <button class="btn btn-primary" id="leave-review-btn">Leave a Review</button>
             </div>
             
             <div class="reviews-grid">
-                <div class="review-card expandable" data-expandable="true">
+                <div class="review-card expandable" data-expandable="true" data-reveal>
                     <div class="review-stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -207,7 +217,7 @@
                     </div>
                 </div>
                 
-                <div class="review-card expandable" data-expandable="true">
+                <div class="review-card expandable" data-expandable="true" data-reveal data-reveal-delay="1">
                     <div class="review-stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -228,7 +238,7 @@
                     </div>
                 </div>
                 
-                <div class="review-card expandable" data-expandable="true">
+                <div class="review-card expandable" data-expandable="true" data-reveal data-reveal-delay="2">
                     <div class="review-stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -256,7 +266,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-grid">
-                <div class="contact-info">
+                <div class="contact-info" data-reveal>
                     <h2 class="section-title">Get in Touch</h2>
                     <p class="contact-description">Ready to start your piano journey? Reach out to schedule your first lesson.</p>
                     
@@ -272,7 +282,7 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <strong>Email</strong>
-                                <p><a href="mailto:dylanernstpiano@gmail.com">dylanernstr@gmail.com</a></p>
+                                <p><a href="mailto:dylanernstr@gmail.com">dylanernstr@gmail.com</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -290,7 +300,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form-container">
+                <div class="contact-form-container" data-reveal data-reveal-delay="1">
                     <form class="contact-form" action="https://formspree.io/f/xrbwbjlr" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -412,7 +422,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Dylan Ernst Piano Studio. All rights reserved.</p>
+                <p>&copy; <span id="copyright-year">2026</span> Dylan Ernst Piano Studio. All rights reserved.</p>
             </div>
         </div>
     </footer>
