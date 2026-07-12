@@ -908,7 +908,8 @@ html.js [data-reveal].revealed {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 992px) {
+/* Keep the desktop layout through tablet widths; collapse only at mobile (768px) */
+@media (max-width: 768px) {
     .about-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
