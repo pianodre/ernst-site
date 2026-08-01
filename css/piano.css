@@ -179,21 +179,45 @@ img {
     width: 100%;
 }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO SECTION =====
+ * Pinned 3D scroll story: .hero-track sets the scroll length, the
+ * sticky .hero-stage stays on screen while js/hero3d.js drives the
+ * piano camera and cross-fades the .hero-phase layers.
+ * `.hero-static` (set by JS) is the fallback: one screen, no pin.
+ */
 .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     position: relative;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: #fff;
-    padding: 6rem 2rem 4rem;
+    text-align: center;
+    padding: 0; /* override the generic section padding — the stage fills the viewport */
 }
 
-.hero {
+/* Only run the tall scroll track when JS is available to drive it */
+html.js .hero-track {
+    height: 400vh;
+}
+
+html.js .hero.hero-static .hero-track {
+    height: auto;
+}
+
+.hero-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-static .hero-stage,
+html:not(.js) .hero-stage {
+    position: relative;
+    min-height: 100vh;
+    height: auto;
 }
 
 .hero-overlay {
@@ -207,10 +231,62 @@ img {
     animation: hero-zoom 20s ease-out both;
 }
 
-.hero-content {
-    position: relative;
+/* Dial the photo back once the 3D canvas is running */
+.hero-3d .hero-overlay {
+    opacity: 0.07;
+    animation: none;
+}
+
+.hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.hero-3d .hero-canvas {
+    opacity: 1;
+}
+
+/* Text phases — JS drives opacity/transform from scroll progress */
+.hero-phase {
+    position: absolute;
+    inset: 0;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 4rem;
+    pointer-events: none;
+}
+
+.hero-phase > * {
     max-width: 800px;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.hero-phase .hero-cta {
+    text-shadow: none;
+}
+
+.hero-phase.is-active {
+    pointer-events: auto;
+}
+
+.hero-phase-2,
+.hero-phase-3 {
+    opacity: 0;
+}
+
+/* Fallback hero shows only the intro phase */
+.hero-static .hero-phase-2,
+.hero-static .hero-phase-3,
+html:not(.js) .hero-phase-2,
+html:not(.js) .hero-phase-3 {
+    display: none;
 }
 
 .hero-subtitle {
@@ -252,11 +328,20 @@ img {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 2;
     color: rgba(255, 255, 255, 0.6);
     font-size: 1.25rem;
     padding: 0.5rem;
     animation: hero-fade-in 0.8s ease 1s both;
+    transition: opacity 0.4s ease;
+}
+
+/* JS hides the hint once the story starts; animation must be cleared
+   or its fill mode would override the opacity */
+.hero-scroll.is-hidden {
+    animation: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 @keyframes hero-fade-in {
@@ -892,6 +977,10 @@ html.js [data-reveal].revealed {
         animation: none;
     }
 
+    .hero-canvas {
+        transition: none;
+    }
+
     html.js [data-reveal] {
         opacity: 1;
         transform: none;
@@ -978,7 +1067,7 @@ html.js [data-reveal].revealed {
         padding: 4rem 0;
     }
     
-    .hero {
+    .hero-phase {
         padding: 5rem 1.5rem 3rem;
     }
     

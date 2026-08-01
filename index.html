@@ -43,21 +43,39 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section — pinned 3D scroll story (js/hero3d.js) -->
     <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-subtitle">Private Piano Instruction</p>
-            <h1 class="hero-title">Learn Piano with Dylan Ernst</h1>
-            <p class="hero-description">Personalized lessons for students of all ages and skill levels in Orange County, CA</p>
-            <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">Book a Lesson</a>
-                <a href="#about" class="btn btn-secondary">Learn More</a>
+        <div class="hero-track">
+            <div class="hero-stage">
+                <div class="hero-overlay"></div>
+                <canvas class="hero-canvas" aria-hidden="true"></canvas>
+                <div class="hero-phase hero-phase-1 is-active">
+                    <p class="hero-subtitle">Private Piano Instruction</p>
+                    <h1 class="hero-title">Learn Piano with Dylan Ernst</h1>
+                    <p class="hero-description">Personalized lessons for students of all ages and skill levels in Orange County, CA</p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Book a Lesson</a>
+                        <a href="#about" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-phase hero-phase-2" aria-hidden="true">
+                    <p class="hero-subtitle">About Your Teacher</p>
+                    <h2 class="hero-title">16 years of piano.<br>Teaching since 2019.</h2>
+                    <p class="hero-description">MTAC member · Piano Performance at Chapman University</p>
+                </div>
+                <div class="hero-phase hero-phase-3" aria-hidden="true">
+                    <p class="hero-subtitle">The Studio</p>
+                    <h2 class="hero-title">Lessons for all ages and skill levels</h2>
+                    <p class="hero-description">Weekly lessons · annual May recital · Orange County, CA</p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Book a Lesson</a>
+                    </div>
+                </div>
+                <a href="#about" class="hero-scroll" aria-label="Scroll to About section">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
             </div>
         </div>
-        <a href="#about" class="hero-scroll" aria-label="Scroll to About section">
-            <i class="fas fa-chevron-down"></i>
-        </a>
     </section>
 
     <!-- About Section -->
@@ -433,5 +451,14 @@
 
     <script src="js/piano.js"></script>
     <script src="js/reviews.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="js/hero3d.js"></script>
 </body>
 </html>
