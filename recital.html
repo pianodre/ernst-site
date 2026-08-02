@@ -4,132 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senior Recital | Dylan Ernst</title>
-    <meta name="description" content="Program for Dylan Ernst's senior piano recital, featuring works by Bach, Rachmaninoff, Beethoven, and Chopin.">
+    <meta name="description" content="Digital program for Dylan Ernst's senior piano recital, featuring works by Bach, Chopin, Beethoven, and Rachmaninoff.">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/recital.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        document.documentElement.classList.add('js');
+        // Decide before first paint so anchor links never flash the cover
+        if (window.location.hash) document.documentElement.classList.add('skip-cover');
+    </script>
 </head>
 <body>
-    <div class="container">
-        <header class="recital-header">
-            <img src="content/recital-poster.jpg" alt="Dylan Ernst Senior Recital poster" class="recital-poster">
-            <h1 class="main-title">Senior Recital</h1>
-            <div class="date-venue">
-                <p class="name">Dylan Ernst</p>
+
+    <!-- Cover — flips away like the front of a printed program -->
+    <section class="cover" id="cover">
+        <div class="cover-glow" aria-hidden="true"></div>
+        <div class="cover-content">
+            <p class="cover-eyebrow">Dylan Ernst &middot; Piano</p>
+            <h1 class="cover-title">Senior<br><em>Recital</em></h1>
+            <div class="cover-rule" aria-hidden="true"><span></span><i>&#9670;</i><span></span></div>
+
+            <!-- Self-playing keyboard: keys light up in a slow ascending sweep -->
+            <div class="keys" aria-hidden="true">
+                <span class="key sharp" style="--i:0"></span>
+                <span class="key sharp" style="--i:1"></span>
+                <span class="key" style="--i:2"></span>
+                <span class="key sharp" style="--i:3"></span>
+                <span class="key sharp" style="--i:4"></span>
+                <span class="key sharp" style="--i:5"></span>
+                <span class="key" style="--i:6"></span>
+                <span class="key sharp" style="--i:7"></span>
+                <span class="key sharp" style="--i:8"></span>
+                <span class="key" style="--i:9"></span>
             </div>
+
+            <button class="cover-open" id="open-program">
+                Open the Program
+                <span class="cover-open-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <main class="program" id="program" tabindex="-1">
+        <header class="program-header">
+            <p class="program-eyebrow">Program</p>
+            <h1 class="program-title">Senior Recital</h1>
+            <p class="program-performer">Dylan Ernst, piano</p>
         </header>
 
-        <main class="program">
-            <div class="program-section">
+        <section class="half" id="anchor-first-half" aria-label="First half">
 
-                <div class="composer">
-                    <h2>
-                        <span class="composer-name">Johann Sebastian Bach</span>
-                        <span class="composer-date">1685–1750</span>
-                    </h2>
-
-                    <div class="piece">
-                        <h3>
-                            <span class="piece-name">Prelude in Ab Major, BWV 846</span>
-                            <button class="icon-button" data-title="Prelude in Ab Major, BWV 846" data-body="Johann Sebastian Bach wrote this prelude as part of The Well Tempered Clavier, a collection designed to demonstrate the expressive and technical possibilities of the keyboard in all major and minor keys. <br><br> Rather than telling a story, the piece serves as a study in harmony, motion, and balance. Its steady flow and clear structure reflect Bach’s belief that musical beauty comes from order, precision, and thoughtful shaping of simple material.">&#9432;</button>
-                        </h3>
+            <article class="piece" data-reveal>
+                <p class="piece-composer">Johann Sebastian Bach <span class="dates">1685&ndash;1750</span></p>
+                <h2 class="piece-title">Prelude in A-flat Major, BWV&nbsp;846</h2>
+                <button class="note-toggle" aria-expanded="false" aria-controls="note-bach">Program note</button>
+                <div class="note" id="note-bach">
+                    <div class="note-inner">
+                        <p>Bach wrote this prelude as part of <em>The Well-Tempered Clavier</em>, a collection designed to demonstrate the expressive and technical possibilities of the keyboard in all major and minor keys.</p>
+                        <p>Rather than telling a story, the piece serves as a study in harmony, motion, and balance. Its steady flow and clear structure reflect Bach&rsquo;s belief that musical beauty comes from order, precision, and thoughtful shaping of simple material.</p>
                     </div>
                 </div>
+            </article>
 
-                <div class="composer" id="anchor-first-half">
-                    <h2>
-                        <span class="composer-name">Sergei Rachmaninoff</span>
-                        <span class="composer-date">1873–1943</span>
-                    </h2>
-                    <div class="piece">
-                        <h3>
-                            <span class="piece-name">Prelude in G minor, Op. 23 No. 5</span>
-                            <button class="icon-button" data-title="Prelude in G minor, Op. 23 No. 5" data-body="Sergei Rachmaninoff wrote this prelude in 1901 as part of his Op. 23 set, during a period of renewed confidence following the success of his Piano Concerto No. 2. <br><br> The opening march suggests strength and ceremonial power, while the middle section turns inward with a lyrical, reflective character. Together, these contrasting moods highlight the emotional duality central to Rachmaninoff’s style.">&#9432;</button>
-                        </h3>
+            <article class="piece" data-reveal>
+                <p class="piece-composer">Fr&eacute;d&eacute;ric Chopin <span class="dates">1810&ndash;1849</span></p>
+                <h2 class="piece-title">&Eacute;tude in G-flat Major, Op.&nbsp;25 No.&nbsp;9 <span class="nickname">&ldquo;Butterfly&rdquo;</span></h2>
+                <button class="note-toggle" aria-expanded="false" aria-controls="note-chopin-etude">Program note</button>
+                <div class="note" id="note-chopin-etude">
+                    <div class="note-inner">
+                        <p>Chopin published this &eacute;tude in 1837 as part of his second set of studies, works that transformed the technical exercise into genuine concert music. The shortest of all his &eacute;tudes, it lasts barely a minute.</p>
+                        <p>The study lies in its flickering right-hand figure &mdash; quick, light staccato leaps that flutter continuously from the first bar to the last, the motion that earned the piece its nickname. Beneath the charm is a demand for absolute evenness and a feather-light touch at speed.</p>
                     </div>
                 </div>
+            </article>
 
-                <div class="composer">
-                    <h2>
-                        <span class="composer-name">Ludwig van Beethoven</span>
-                        <span class="composer-date">1770–1827</span>
-                    </h2>
-                    <div class="piece">
-                        <h3>
-                            <span class="piece-name">Piano Sonata No. 8 in C minor, Op. 13</span>
-                            <button class="icon-button" data-title="Piano Sonata No. 8 in C minor, Op. 13" data-body="Ludwig van Beethoven titled this work <em>Pathétique</em>, meaning intense emotion or deep feeling, making it one of the few sonatas he personally named. He composed it at age 28, during the early stages of his hearing loss, marking a significant emotional and stylistic turning point. The dramatic contrasts, forceful opening, and expressive slow movement reflect both personal struggle and Beethoven’s expanding vision for the piano sonata.">&#9432;</button>
-                        </h3>
-                        <ul class="movements">
-                            <li>I. Grave – Allegro di molto e con brio</li>
-                            <li>II. Adagio cantabile</li>
-                            <li>III. Rondo: Allegro</li>
-                        </ul>
+            <article class="piece" data-reveal>
+                <p class="piece-composer">Ludwig van Beethoven <span class="dates">1770&ndash;1827</span></p>
+                <h2 class="piece-title">Piano Sonata No.&nbsp;8 in C minor, Op.&nbsp;13 <span class="nickname">&ldquo;Path&eacute;tique&rdquo;</span></h2>
+                <ul class="movements">
+                    <li>I. Grave &ndash; Allegro di molto e con brio</li>
+                    <li>II. Adagio cantabile</li>
+                    <li>III. Rondo: Allegro</li>
+                </ul>
+                <button class="note-toggle" aria-expanded="false" aria-controls="note-beethoven">Program note</button>
+                <div class="note" id="note-beethoven">
+                    <div class="note-inner">
+                        <p>Beethoven titled this work <em>Path&eacute;tique</em>, meaning intense emotion or deep feeling, making it one of the few sonatas he personally named. He composed it at age 28, during the early stages of his hearing loss, marking a significant emotional and stylistic turning point.</p>
+                        <p>The dramatic contrasts, forceful opening, and expressive slow movement reflect both personal struggle and Beethoven&rsquo;s expanding vision for the piano sonata.</p>
                     </div>
                 </div>
+            </article>
 
-                <div class="intermission">
-                    <h2>~ INTERMISSION ~</h2>
-                </div>
+        </section>
 
-                <div class="composer">
-                    <h2>
-                        <span class="composer-name">Zequinha de Abreu</span>
-                        <span class="composer-date">1880–1935</span>
-                    </h2>
-                    <div class="piece">
-                        <h3>
-                            <span class="piece-name">Tico-Tico no Fubá <span class="arranger">(arr. Radmila Stojanovic-Kiriluk)</span></span>
-                            <button class="icon-button" data-title="Tico-Tico no Fubá" data-body="Zequinha de Abreu wrote this lively Brazilian choro to capture the playful energy of a small bird darting around cornmeal. In the four hand arrangement, the focus is on rhythmic drive, ensemble coordination, and shared musical dialogue rather than technical difficulty. The piece highlights clarity, precision, and a joyful sense of motion, making it an engaging and spirited collaboration for both performers.">&#9432;</button>
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="composer" id="anchor-second-half">
-                    <h2>
-                        <span class="composer-name">Sergei Rachmaninoff</span>
-                        <!-- <span class="composer-date">1873–1943</span> --> 
-                    </h2>
-                    <div class="piece">
-                        <h3>
-                            <span class="piece-name">Rhapsody on a Theme of Paganini, Op. 43 <span class="arranger">(arr. Michael Loveridge)</span></span>
-                            <button class="icon-button" data-title="Rhapsody on a Theme of Paganini, Op. 43" data-body="Sergei Rachmaninoff composed this work in 1934 during a low and creatively difficult period following his departure from Russia. At the time, he largely avoided writing completely original large scale works and instead focused on variation based compositions.<br><br> Using Paganini’s theme, he transforms the material with sharp contrast and brilliance, most famously in the eighteenth variation, where the theme becomes a broad and lyrical melody.">&#9432;</button>
-                        </h3>
-                        <ul class="movements">
-                            <li>Variation XVIII: Andante cantabile</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="composer">
-                    <h2>
-                        <span class="composer-name">Frédéric Chopin</span>
-                        <span class="composer-date">1810–1849</span>
-                    </h2>
-                    <div class="piece">
-                        <h3>
-                            <span class="piece-name">Polonaise in A-flat Major, Op. 53</span>
-                            <button class="icon-button" data-title="Polonaise in A-flat Major, Op. 53" data-body="Frédéric Chopin wrote this polonaise as a powerful expression of Polish national pride. During Chopin’s lifetime, Poland had been partitioned and was under foreign rule, particularly by Russia, and Polish identity was under constant threat. The bold rhythms and heroic character of the piece reflect resistance, strength, and patriotism, turning a traditional Polish dance into a symbol of national spirit, power and defiance.">&#9432;</button>
-                        </h3>
-                    </div>
-                </div>
-
-
+        <!-- Intermission — fixed-image window, same technique as the main site's interlude -->
+        <div class="intermission">
+            <div class="intermission-bg" aria-hidden="true"></div>
+            <div class="intermission-scrim" aria-hidden="true"></div>
+            <div class="intermission-label" data-reveal>
+                <span class="intermission-line" aria-hidden="true"></span>
+                <p>Intermission</p>
+                <span class="intermission-line" aria-hidden="true"></span>
             </div>
+        </div>
 
-            <div id="popupOverlay">
-                <div class="popupCard">
-                    <button id="closePopup" class="close-x">&times;</button>
-                    <h2 id="popupTitle">Popup Title</h2>
-                    <p id="popupBody">This is a popup card.</p>
+        <section class="half" id="anchor-second-half" aria-label="Second half">
+
+            <article class="piece" data-reveal>
+                <p class="piece-composer">Sergei Rachmaninoff <span class="dates">1873&ndash;1943</span></p>
+                <h2 class="piece-title">Prelude in G minor, Op.&nbsp;23 No.&nbsp;5</h2>
+                <button class="note-toggle" aria-expanded="false" aria-controls="note-rach-prelude">Program note</button>
+                <div class="note" id="note-rach-prelude">
+                    <div class="note-inner">
+                        <p>Rachmaninoff wrote this prelude in 1901 as part of his Op. 23 set, during a period of renewed confidence following the success of his Piano Concerto No. 2.</p>
+                        <p>The opening march suggests strength and ceremonial power, while the middle section turns inward with a lyrical, reflective character. Together, these contrasting moods highlight the emotional duality central to Rachmaninoff&rsquo;s style.</p>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-        </main>
-    </div>
+            <article class="piece" data-reveal>
+                <p class="piece-composer">Sergei Rachmaninoff</p>
+                <h2 class="piece-title">Rhapsody on a Theme of Paganini, Op.&nbsp;43 <span class="arranger">arr. Michael Loveridge</span></h2>
+                <ul class="movements">
+                    <li>Variation XVIII: Andante cantabile</li>
+                </ul>
+                <button class="note-toggle" aria-expanded="false" aria-controls="note-rach-rhapsody">Program note</button>
+                <div class="note" id="note-rach-rhapsody">
+                    <div class="note-inner">
+                        <p>Rachmaninoff composed this work in 1934 during a low and creatively difficult period following his departure from Russia. At the time, he largely avoided writing completely original large-scale works and instead focused on variation-based compositions.</p>
+                        <p>Using Paganini&rsquo;s theme, he transforms the material with sharp contrast and brilliance, most famously in the eighteenth variation, where the theme becomes a broad and lyrical melody.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="piece" data-reveal>
+                <p class="piece-composer">Fr&eacute;d&eacute;ric Chopin <span class="dates">1810&ndash;1849</span></p>
+                <h2 class="piece-title">Polonaise in A-flat Major, Op.&nbsp;53 <span class="nickname">&ldquo;Heroic&rdquo;</span></h2>
+                <button class="note-toggle" aria-expanded="false" aria-controls="note-polonaise">Program note</button>
+                <div class="note" id="note-polonaise">
+                    <div class="note-inner">
+                        <p>Chopin wrote this polonaise as a powerful expression of Polish national pride. During his lifetime, Poland had been partitioned and was under foreign rule, particularly by Russia, and Polish identity was under constant threat.</p>
+                        <p>The bold rhythms and heroic character of the piece reflect resistance, strength, and patriotism, turning a traditional Polish dance into a symbol of national spirit, power, and defiance.</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <footer class="program-footer" data-reveal>
+            <div class="footer-rule" aria-hidden="true"><span></span><i>&#9670;</i><span></span></div>
+            <p class="footer-thanks">Thank you for sharing this evening.</p>
+            <a class="footer-link" href="https://dylan-ernst.com">dylan-ernst.com</a>
+        </footer>
+    </main>
 
     <script src="js/recital.js"></script>
 </body>

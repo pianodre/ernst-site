@@ -1,372 +1,554 @@
-* {
+/*
+ * Dylan Ernst Piano Studio
+ * Senior recital — digital program booklet.
+ * Shares the "evening recital" palette with the main site (css/piano.css).
+ */
+
+:root {
+    --stage: #14120f;          /* house lights down — deeper than the main site */
+    --panel: #1e1b17;
+    --line: rgba(236, 231, 219, 0.13);
+    --ivory: #ece7db;
+    --ivory-soft: #b7b0a2;
+    --ivory-faint: #8d8778;
+    --gold: #d3a339;
+    --gold-deep: #b8860b;
+    --serif: 'Playfair Display', Georgia, serif;
+    --body: 'Lora', Georgia, serif;
+    color-scheme: dark;
+}
+
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Lora', serif;
-    background-image: url('../content/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    color: #2c2c2c;
-    line-height: 1.6;
-    padding: 40px 0;
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ivory);
+    background-color: var(--stage);
+    overflow-x: clip;
 }
 
-.container {
-    max-width: 800px;
-    width: calc(100% - 80px);
-    margin: 40px auto;
-    padding: 25px 20px;
-    background-color: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    animation: recital-fade-in 0.8s ease both;
+::selection {
+    background: rgba(211, 163, 57, 0.35);
 }
 
-@keyframes recital-fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .container {
-        animation: none;
-    }
-}
+/* ===== COVER ===== */
 
-.recital-header {
+.cover {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #d4af37;
+    background-color: var(--stage);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
 }
 
-.recital-poster {
-    display: block;
-    width: 100%;
-    max-width: 380px;
-    height: auto;
-    margin: 0 auto 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+/* The page turn: rotate away like the front of a booklet; backface-visibility
+   makes the cover vanish past 90° so the program is never seen mirrored */
+html.js .cover.flipped {
+    transform: perspective(1600px) rotateY(-180deg);
+    transition: transform 1.2s cubic-bezier(0.65, 0, 0.3, 1);
 }
 
-.main-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    letter-spacing: 2px;
+.cover.gone {
+    display: none;
 }
 
-.date-venue {
-    margin-top: 15px;
+/* No JS (or arriving on a #anchor link): skip straight to the program */
+html:not(.js) .cover,
+html.skip-cover .cover {
+    display: none;
 }
 
-.name {
-    font-size: 1.3rem;
-    color: #666;
+/* Warm pool of stage light behind the title, breathing slowly */
+.cover-glow {
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(ellipse 55% 45% at 50% 42%,
+        rgba(211, 163, 57, 0.13), transparent 70%);
+    animation: glow-breathe 9s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes glow-breathe {
+    from { opacity: 0.65; transform: scale(0.97); }
+    to   { opacity: 1;    transform: scale(1.03); }
+}
+
+.cover-content {
+    position: relative;
+    padding: 2rem 1.5rem;
+    max-width: 620px;
+}
+
+.cover-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 1.75rem;
+}
+
+.cover-title {
+    font-family: var(--serif);
+    font-size: clamp(3.25rem, 11vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    margin-bottom: 1.75rem;
+}
+
+.cover-title em {
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
+    color: var(--gold);
 }
+
+.cover-rule,
+.footer-rule {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.cover-rule span,
+.footer-rule span {
+    display: block;
+    width: 72px;
+    height: 1px;
+    background-color: var(--line);
+}
+
+.cover-rule i,
+.footer-rule i {
+    font-style: normal;
+    font-size: 0.55rem;
+    color: var(--gold);
+}
+
+/* ===== Self-playing keyboard ===== */
+
+.keys {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    margin-bottom: 3rem;
+}
+
+.key {
+    position: relative;
+    width: clamp(26px, 7.5vw, 34px);
+    height: 104px;
+}
+
+/* The white key surface lives on ::before so its press animation
+   never moves the black key drawn on ::after */
+.key::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--line);
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(rgba(236, 231, 219, 0.05), rgba(236, 231, 219, 0.02));
+    animation: key-play 6s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.35s);
+}
+
+/* Each key glows gold for a beat as the sweep passes through it */
+@keyframes key-play {
+    0%, 10%, 100% {
+        background: linear-gradient(rgba(236, 231, 219, 0.05), rgba(236, 231, 219, 0.02));
+        transform: translateY(0);
+        box-shadow: none;
+    }
+    5% {
+        background: linear-gradient(rgba(211, 163, 57, 0.75), rgba(184, 134, 11, 0.45));
+        transform: translateY(3px);
+        box-shadow: 0 0 22px rgba(211, 163, 57, 0.35);
+    }
+}
+
+.key.sharp::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: 0;
+    transform: translateX(55%);
+    width: 58%;
+    height: 60%;
+    background-color: #0c0b09;
+    border: 1px solid var(--line);
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    z-index: 2;
+}
+
+.cover-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--stage);
+    background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+    border: none;
+    border-radius: 999px;
+    padding: 1rem 2.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cover-open:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(211, 163, 57, 0.3);
+}
+
+.cover-open-arrow {
+    transition: transform 0.3s ease;
+}
+
+.cover-open:hover .cover-open-arrow {
+    transform: translateX(4px);
+}
+
+/* ===== PROGRAM ===== */
 
 .program {
-    padding: 0 15px;
+    max-width: 660px;
+    margin: 0 auto;
+    padding: clamp(4rem, 10vh, 7rem) 1.5rem 4rem;
+    outline: none;
 }
 
-.program-section {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+.program-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
 }
 
-.date {
-    font-size: 1.3rem;
-    color: #666;
+.program-eyebrow,
+.footer-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--gold);
+}
+
+.program-eyebrow {
+    margin-bottom: 1rem;
+}
+
+.program-title {
+    font-family: var(--serif);
+    font-size: clamp(2.25rem, 7vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+}
+
+.program-performer {
     font-style: italic;
-    font-weight: 300;
-    text-align: left;
+    color: var(--ivory-soft);
 }
 
-.composer {
-    margin-bottom: 15px;
+/* Header lines cascade in as the cover flips away */
+html.js .program-header > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.composer h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #2c2c2c;
-    margin-bottom: 10px;
-    border-left: 4px solid #d4af37;
-    padding-left: 15px;
-    display: flex;
-    align-items: flex-end;
-    gap: 12px;
+html.js .program.open .program-header > *,
+html:not(.js) .program-header > * {
+    opacity: 1;
+    transform: none;
 }
 
-.composer-name {
-    flex: 1;
+.program.open .program-eyebrow   { transition-delay: 0.15s; }
+.program.open .program-title     { transition-delay: 0.3s; }
+.program.open .program-performer { transition-delay: 0.45s; }
+
+/* ===== Pieces ===== */
+
+.piece {
+    padding: 2.25rem 0;
+    border-top: 1px solid var(--line);
 }
 
-.composer-date {
-    font-family: 'Lora', serif;
-    font-size: 1.1rem;
+.piece:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.piece-composer {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--ivory-soft);
+    margin-bottom: 0.65rem;
+}
+
+.piece-composer .dates {
+    color: var(--ivory-faint);
+    letter-spacing: 1px;
+    margin-left: 0.5rem;
+}
+
+.piece-title {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 4.5vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+}
+
+.piece-title .nickname {
     font-weight: 400;
-    color: #666;
     font-style: italic;
-    margin-left: auto;
-    text-align: right;
+    color: var(--gold);
     white-space: nowrap;
 }
 
-.piece {
-    margin-left: 15px;
-}
-
-.piece h3 {
-    font-family: 'Lora', serif;
-    font-size: 1.3rem;
+.piece-title .arranger {
+    display: block;
+    font-family: var(--body);
+    font-size: 0.9rem;
     font-weight: 400;
-    color: #444;
-    margin-bottom: 8px;
     font-style: italic;
-    display: flex;
-    align-items: flex-end;
-    gap: 12px;
-}
-
-.piece-name {
-    flex: 1;
-}
-
-.icon-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.icon-button:hover {
-    color: #d4af37;
-    transform: scale(1.2);
+    color: var(--ivory-faint);
+    margin-top: 0.35rem;
 }
 
 .movements {
     list-style: none;
-    margin-left: 15px;
-    margin-top: 5px;
+    font-style: italic;
+    color: var(--ivory-soft);
+    margin: 0.25rem 0 0.9rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(211, 163, 57, 0.35);
 }
 
 .movements li {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 3px;
-    padding-left: 20px;
-    position: relative;
+    padding: 0.15rem 0;
 }
 
-.movements li:before {
-    content: "♪";
-    position: absolute;
-    left: 0;
-    color: #d4af37;
-    font-size: 1.2rem;
-}
+/* ===== Program notes (expandable) ===== */
 
-.special {
-    color: #d4af37;
-    font-weight: 400;
-    font-size: 1.1rem;
-}
-
-.intermission, .encore {
-    text-align: center;
-    margin: 25px 0;
-    padding: 15px 0;
-}
-
-.intermission h2, .encore h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: #8b6914;
-    letter-spacing: 3px;
+.note-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    background: none;
     border: none;
-    padding: 0;
+    padding: 0.4rem 0;
+    cursor: pointer;
+}
+
+/* Chevron drawn in CSS so it can rotate with the toggle */
+.note-toggle::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.35s ease;
+}
+
+.note-toggle[aria-expanded="true"]::after {
+    transform: rotate(225deg) translateY(-1px);
+}
+
+.note-toggle:hover {
+    color: var(--ivory);
+}
+
+.note {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease;
+}
+
+.note.open {
+    grid-template-rows: 1fr;
+}
+
+.note-inner {
+    overflow: hidden;
+}
+
+.note-inner p {
+    font-size: 0.95rem;
+    color: var(--ivory-soft);
+    padding-top: 0.9rem;
+    max-width: 58ch;
+}
+
+/* ===== Intermission =====
+ * Fixed-image window: the photo stays pinned to the viewport while the
+ * program scrolls over it like a cutout. clip-path clips the fixed layer
+ * (works on iOS, unlike background-attachment: fixed). Full-bleed out of
+ * the program column via the 50% - 50vw margin trick.
+ */
+
+.intermission {
     position: relative;
+    width: 100vw;
+    height: 46vh;
+    min-height: 280px;
+    margin: 4rem 0 4rem calc(50% - 50vw);
+    clip-path: inset(0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.intermission h2:before, .intermission h2:after,
-.encore h2:before, .encore h2:after {
-    content: "";
+.intermission-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100lvh;
+    background: url('../content/intermission.jpg') 40% 52% / cover no-repeat;
+}
+
+.intermission-scrim {
     position: absolute;
-    top: 50%;
-    width: 60px;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 18, 15, 0.7), rgba(20, 18, 15, 0.35) 45%, rgba(20, 18, 15, 0.7));
+}
+
+.intermission-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: min(560px, calc(100% - 3rem));
+}
+
+.intermission-line {
+    flex: 1;
     height: 1px;
-    background-color: #d4af37;
+    background: linear-gradient(90deg, transparent, rgba(211, 163, 57, 0.7));
 }
 
-.intermission h2:before, .encore h2:before {
-    left: -80px;
+.intermission-line:last-child {
+    background: linear-gradient(90deg, rgba(211, 163, 57, 0.7), transparent);
 }
 
-.intermission h2:after, .encore h2:after {
-    right: -80px;
+.intermission-label p {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: calc(100% - 40px);
-        margin: 20px auto;
-        padding: 30px 15px;
-    }
-    
-    .main-title {
-        font-size: 2.5rem;
-    }
-    
-    .composer h2 {
-        font-size: 1.5rem;
-    }
-    
-    .piece h3 {
-        font-size: 1.1rem;
-    }
-    
-    .movements li {
-        font-size: 1rem;
-    }
-    
-    .intermission h2:before, .intermission h2:after,
-    .encore h2:before, .encore h2:after {
-        width: 40px;
-    }
-    
-    .intermission h2:before, .encore h2:before {
-        left: -50px;
-    }
-    
-    .intermission h2:after, .encore h2:after {
-        right: -50px;
-    }
+/* ===== Footer ===== */
+
+.program-footer {
+    text-align: center;
+    margin-top: 4.5rem;
 }
 
-@media (max-width: 480px) {
-    .container {
-        width: calc(100% - 20px);
-        margin: 10px auto;
-    }
-    
-    .main-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-    }
-    
-    .intermission h2:before, .intermission h2:after,
-    .encore h2:before, .encore h2:after {
-        display: none;
-    }
+.program-footer .footer-rule {
+    margin-bottom: 1.75rem;
 }
 
-#popupOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  align-items: flex-start;
-  justify-content: center;
-  pointer-events: all;
-  opacity: 0;
-  transition: opacity 0.25s ease;
+.footer-thanks {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ivory-soft);
+    margin-bottom: 0.9rem;
 }
 
-#popupOverlay.visible {
-  opacity: 1;
+.footer-link {
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.popupCard {
-  background: white;
-  padding: 20px 20px 20px 20px;
-  border-radius: 10px;
-  width: fit-content;
-  max-width: 90vw;
-  text-align: center;
-  position: relative;
-  margin: 0 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  border: 2px solid #d4af37;
-  transform: scale(0.95);
-  transition: transform 0.25s ease;
+.footer-link:hover {
+    color: var(--ivory);
 }
 
-#popupOverlay.visible .popupCard {
-  transform: scale(1);
+/* ===== Scroll reveal (matches the main site: replays in both directions) ===== */
+
+html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
+html.js [data-reveal].revealed {
+    opacity: 1;
+    transform: none;
+}
+
+/* ===== Reduced motion: everything renders complete and still ===== */
 
 @media (prefers-reduced-motion: reduce) {
-  #popupOverlay,
-  .popupCard {
-    transition: none;
-  }
-}
+    html {
+        scroll-behavior: auto;
+    }
 
-@media (max-width: 768px) {
-  .popupCard {
-    max-width: calc(100vw - 40px);
-    margin: 0 10px;
-    padding: 15px;
-  }
-}
+    .cover-glow,
+    .key::before {
+        animation: none;
+    }
 
-@media (max-width: 480px) {
-  .popupCard {
-    max-width: calc(100vw - 20px);
-    margin: 0 10px;
-    padding: 15px 10px;
-  }
-}
+    html.js .cover.flipped {
+        transform: none;
+        transition: none;
+        opacity: 0;
+        visibility: hidden;
+    }
 
-.close-x {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #666;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s;
-}
+    html.js .program-header > *,
+    html.js [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 
-.close-x:hover {
-  color: #d4af37;
+    .note,
+    .note-toggle::after,
+    .cover-open,
+    .cover-open-arrow {
+        transition: none;
+    }
 }
-
