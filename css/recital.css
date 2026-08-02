@@ -64,14 +64,39 @@ button:focus-visible {
 }
 
 /* The page turn: rotate away like the front of a booklet; backface-visibility
-   makes the cover vanish past 90° so the program is never seen mirrored */
-html.js .cover.flipped {
-    transform: perspective(1600px) rotateY(-180deg);
+   makes the cover vanish past 90° so the program is never seen mirrored.
+   Transition lives on .cover so the turn also animates in reverse */
+html.js .cover {
     transition: transform 1.2s cubic-bezier(0.65, 0, 0.3, 1);
 }
 
-.cover.gone {
+html.js .cover.flipped {
+    transform: perspective(1600px) rotateY(-180deg);
+}
+
+.gone {
     display: none;
+}
+
+/* Any page can become a viewport-sized "sheet" and turn away like the
+   cover — used for the program → performer-page transition */
+.sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    overflow: hidden;
+    background-color: var(--stage);
+    transform-origin: left center;
+    backface-visibility: hidden;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+html.js .sheet {
+    transition: transform 1.2s cubic-bezier(0.65, 0, 0.3, 1);
+}
+
+html.js .sheet.flipped {
+    transform: perspective(1600px) rotateY(-180deg);
 }
 
 /* No JS (or arriving on a #anchor link): skip straight to the program */
@@ -234,6 +259,31 @@ html.skip-cover .cover {
 
 .cover-open:hover .cover-open-arrow {
     transform: translateX(4px);
+}
+
+.cover-about {
+    display: flex;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    background: none;
+    border: none;
+    padding: 0.4rem 0;
+    margin-top: 1.75rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.cover-about:hover {
+    color: var(--ivory);
 }
 
 /* ===== PROGRAM ===== */
@@ -451,6 +501,22 @@ html:not(.js) .program-header > * {
     background: linear-gradient(180deg, rgba(20, 18, 15, 0.7), rgba(20, 18, 15, 0.35) 45%, rgba(20, 18, 15, 0.7));
 }
 
+/* PC view: pull the camera back. A portrait photo at cover already shows its
+   full width on widescreen, so instead the image is sized down to a ~72vw
+   panel and its sides fade into the stage color to keep seamless coverage */
+@media (min-width: 769px) {
+    .intermission-bg {
+        background-size: 72vw auto;
+        background-position: 50% 52%;
+    }
+
+    .intermission-scrim {
+        background:
+            linear-gradient(90deg, rgba(20, 18, 15, 1) 13%, rgba(20, 18, 15, 0) 32%, rgba(20, 18, 15, 0) 68%, rgba(20, 18, 15, 1) 87%),
+            linear-gradient(180deg, rgba(20, 18, 15, 0.7), rgba(20, 18, 15, 0.35) 45%, rgba(20, 18, 15, 0.7));
+    }
+}
+
 .intermission-label {
     position: relative;
     display: flex;
@@ -476,6 +542,172 @@ html:not(.js) .program-header > * {
     letter-spacing: 5px;
     color: var(--gold);
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* ===== Page navigation (booklet back-turns) ===== */
+
+.page-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    background: none;
+    border: none;
+    padding: 0.4rem 0;
+    margin-bottom: 3rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.page-back:hover {
+    color: var(--ivory);
+}
+
+/* ===== Performer page (bio + gallery) ===== */
+
+.bio-page {
+    display: none;
+    max-width: 660px;
+    margin: 0 auto;
+    padding: clamp(3rem, 8vh, 5rem) 1.5rem 4rem;
+    outline: none;
+}
+
+html.js .bio-page.open,
+html:not(.js) .bio-page {
+    display: block;
+}
+
+/* Without JS the page turns can't run — hide their buttons */
+html:not(.js) .page-back,
+html:not(.js) .cover-about {
+    display: none;
+}
+
+.bio-header {
+    text-align: center;
+    margin-bottom: 2.25rem;
+}
+
+.bio-title {
+    font-family: var(--serif);
+    font-size: clamp(2.25rem, 7vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin-top: 1rem;
+}
+
+.bio-text p {
+    color: var(--ivory-soft);
+    max-width: 58ch;
+    margin: 0 auto 1.1rem;
+}
+
+.bio-thanks {
+    font-style: italic;
+    font-size: 0.92rem;
+    text-align: center;
+    color: var(--ivory-faint);
+    padding-top: 0.75rem;
+}
+
+.bio-thanks a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.bio-thanks a:hover {
+    color: var(--ivory);
+}
+
+/* ===== Gallery =====
+ * Collage grid, full-bleed past the program column. Photos render in the
+ * page's black-and-white register; color returns on hover.
+ */
+
+.gallery {
+    width: min(1080px, 100vw - 2rem);
+    margin: 5rem 0 0 calc(50% - min(1080px, 100vw - 2rem) / 2);
+}
+
+.gallery-eyebrow {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, clamp(200px, 30vh, 290px));
+    grid-template-areas:
+        "face playing playing interlude"
+        "face handup  studio  interlude";
+    gap: 10px;
+}
+
+.g-face      { grid-area: face; }
+.g-playing   { grid-area: playing; }
+.g-interlude { grid-area: interlude; }
+.g-handup    { grid-area: handup; }
+.g-studio    { grid-area: studio; }
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(1);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    filter: grayscale(0);
+    transform: scale(1.04);
+}
+
+.gallery-credit {
+    text-align: center;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--ivory-faint);
+    margin-top: 0.9rem;
+}
+
+.gallery-credit a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(141, 135, 120, 0.4);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.gallery-credit a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 150px) 44vw repeat(2, 150px);
+        grid-template-areas:
+            "face handup"
+            "face studio"
+            "playing playing"
+            "interlude interlude"
+            "interlude interlude";
+    }
 }
 
 /* ===== Footer ===== */
@@ -536,6 +768,12 @@ html.js [data-reveal].revealed {
         transition: none;
         opacity: 0;
         visibility: hidden;
+    }
+
+    html.js .sheet,
+    html.js .sheet.flipped {
+        transform: none;
+        transition: none;
     }
 
     html.js .program-header > *,

@@ -48,11 +48,14 @@
                 Open the Program
                 <span class="cover-open-arrow" aria-hidden="true">&rarr;</span>
             </button>
+
+            <button class="cover-about" id="open-bio-cover">About the Performer <span aria-hidden="true">&rarr;</span></button>
         </div>
     </section>
 
     <!-- Program -->
     <main class="program" id="program" tabindex="-1">
+        <button class="page-back" id="back-to-cover"><span aria-hidden="true">&larr;</span> Cover</button>
         <header class="program-header">
             <p class="program-eyebrow">Program</p>
             <h1 class="program-title">Senior Recital</h1>
@@ -164,6 +167,51 @@
             <a class="footer-link" href="https://dylan-ernst.com">dylan-ernst.com</a>
         </footer>
     </main>
+
+    <!-- Performer page — bio + gallery, reached by flipping the program away -->
+    <section class="bio-page" id="gallery" tabindex="-1" aria-label="About the performer">
+        <button class="page-back" id="back-to-program"><span aria-hidden="true">&larr;</span> Program</button>
+
+        <header class="bio-header">
+            <p class="program-eyebrow" data-reveal>The Performer</p>
+            <h1 class="bio-title" data-reveal>Dylan Ernst</h1>
+        </header>
+
+        <div class="bio-text" data-reveal>
+            <p>I have been at the piano for seventeen years. I study piano performance at Chapman University with Dr. Janice Park, where tonight&rsquo;s program is presented as my senior recital.</p>
+            <p>Since 2019 I have led my own studio across Orange County, teaching students of all ages and closing every teaching year with a May recital. The music gathered here, from Bach to Rachmaninoff and Chopin, is the repertoire that shaped me as a player.</p>
+            <p>This recital marks the culmination of years of study, performance, and personal growth, and I am grateful to share it with you tonight.</p>
+            <p class="bio-thanks">Special thanks to my teachers, Eiki Worcester and Dr.&nbsp;Janice Park of Chapman University, for the years of guidance that led to this evening.</p>
+        </div>
+
+        <section class="gallery" aria-label="Photo gallery">
+            <p class="program-eyebrow gallery-eyebrow" data-reveal>Gallery</p>
+            <div class="gallery-grid">
+                <figure class="gallery-item g-face" data-reveal>
+                    <img src="content/piano-face.JPEG" alt="Dylan at the keys, in profile" loading="lazy" decoding="async">
+                </figure>
+                <figure class="gallery-item g-playing" data-reveal>
+                    <img src="content/piano-playing.JPG" alt="Mid-phrase at the grand piano, hand lifted" loading="lazy" decoding="async">
+                </figure>
+                <figure class="gallery-item g-interlude" data-reveal>
+                    <img src="content/interlude.jpg" alt="Dylan performing at the piano" loading="lazy" decoding="async">
+                </figure>
+                <figure class="gallery-item g-handup" data-reveal>
+                    <img src="content/piano-hand-up.jpg" alt="On stage at the Kawai grand" loading="lazy" decoding="async">
+                </figure>
+                <figure class="gallery-item g-studio" data-reveal>
+                    <img src="content/studio-collaboration.jpg" alt="Leaning into the music at the piano" loading="lazy" decoding="async">
+                </figure>
+            </div>
+            <p class="gallery-credit" data-reveal>Photography by <a href="https://chrishori.com/" target="_blank" rel="noopener">Chris Hori</a></p>
+        </section>
+
+        <footer class="program-footer" data-reveal>
+            <div class="footer-rule" aria-hidden="true"><span></span><i>&#9670;</i><span></span></div>
+            <p class="footer-thanks">Thank you for sharing this evening.</p>
+            <a class="footer-link" href="https://dylan-ernst.com">dylan-ernst.com</a>
+        </footer>
+    </section>
 
     <script src="js/recital.js"></script>
 </body>
