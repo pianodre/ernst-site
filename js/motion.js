@@ -14,28 +14,35 @@ document.addEventListener('DOMContentLoaded', function () {
     // ===== Count-up numbers (.stats-band) =====
 
     function animateCount(el) {
-        const raw = el.textContent.trim();
+        // The first run replaces the element's markup with plain text, so
+        // remember the original value to re-count from on later passes
+        if (!el.dataset.countTarget) el.dataset.countTarget = el.textContent.trim();
+        const raw = el.dataset.countTarget;
         const target = parseFloat(raw);
         if (isNaN(target)) return;
         const decimals = raw.includes('.') ? 1 : 0;
         const duration = 1200;
         const start = performance.now();
 
+        // Cancel any in-flight count so re-entries don't fight over textContent
+        if (el._countRaf) cancelAnimationFrame(el._countRaf);
+
         function tick(now) {
             const t = Math.min(1, (now - start) / duration);
             const eased = 1 - Math.pow(1 - t, 3);
             el.textContent = (target * eased).toFixed(decimals);
-            if (t < 1) requestAnimationFrame(tick);
+            el._countRaf = t < 1 ? requestAnimationFrame(tick) : null;
         }
-        requestAnimationFrame(tick);
+        el._countRaf = requestAnimationFrame(tick);
     }
 
     const counters = document.querySelectorAll('[data-countup]');
     if (counters.length && 'IntersectionObserver' in window) {
+        // Kept observing (not one-shot) so the numbers re-count each time
+        // the stats band scrolls back into view
         const countObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
-                countObserver.unobserve(entry.target);
                 animateCount(entry.target);
             });
         }, { threshold: 0.6 });

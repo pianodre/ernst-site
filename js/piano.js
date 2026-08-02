@@ -77,12 +77,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const revealElements = document.querySelectorAll('[data-reveal]');
 
     if ('IntersectionObserver' in window) {
+        // Toggle (not one-shot) so elements replay their reveal when
+        // scrolled back into view from either direction
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    revealObserver.unobserve(entry.target);
-                }
+                entry.target.classList.toggle('revealed', entry.isIntersecting);
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 

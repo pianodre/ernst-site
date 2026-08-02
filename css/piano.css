@@ -996,20 +996,6 @@ section {
     padding: 4rem 0 2rem;
 }
 
-.footer-name {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.25rem, 5vw, 3.25rem);
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 2rem;
-}
-
-.footer-rule {
-    height: 1px;
-    background-color: var(--line);
-    margin-bottom: 2rem;
-}
-
 .footer-nav-row {
     display: flex;
     justify-content: space-between;
@@ -1031,11 +1017,28 @@ section {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--ink-soft);
+    padding: 0.5rem 0;
+    position: relative;
     transition: color 0.3s ease;
 }
 
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold);
+    transition: width 0.3s ease;
+}
+
 .footer-links a:hover {
-    color: var(--gold);
+    color: var(--ink);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
 }
 
 .footer-social {
