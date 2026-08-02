@@ -5,7 +5,7 @@
 
 /* ===== REVIEWS SECTION ===== */
 .reviews {
-    background-color: #fafafa;
+    background-color: var(--bg);
 }
 
 .review-cta-container {
@@ -21,16 +21,18 @@
 }
 
 .review-card {
-    background-color: #fff;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease;
 }
 
 .review-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: rgba(211, 163, 57, 0.45);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .review-stars {
@@ -38,12 +40,12 @@
 }
 
 .review-stars i {
-    color: #b8860b;
+    color: var(--gold);
     font-size: 1rem;
 }
 
 .review-text {
-    color: #555;
+    color: var(--ink-soft);
     font-style: italic;
     margin-bottom: 1.5rem;
     line-height: 1.7;
@@ -51,13 +53,13 @@
 
 .review-author strong {
     display: block;
-    color: #1a1a1a;
+    color: var(--ink);
     font-weight: 600;
     margin-bottom: 0.25rem;
 }
 
 .review-author span {
-    color: #888;
+    color: var(--ink-faint);
     font-size: 0.9rem;
 }
 
@@ -80,7 +82,7 @@
     left: 0;
     right: 0;
     height: 60px;
-    background: linear-gradient(to bottom, transparent, #fff);
+    background: linear-gradient(to bottom, transparent, var(--surface));
     pointer-events: none;
 }
 
@@ -94,7 +96,7 @@
     gap: 0.5rem;
     background: none;
     border: none;
-    color: #b8860b;
+    color: var(--gold);
     font-weight: 500;
     font-size: 0.9rem;
     cursor: pointer;
@@ -104,7 +106,7 @@
 }
 
 .review-expand-btn:hover {
-    color: #996f09;
+    color: var(--ink);
     gap: 0.75rem;
 }
 
@@ -150,18 +152,18 @@
 
 .star-rating label {
     cursor: pointer;
-    color: #ddd;
+    color: #4c463c;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: #b8860b;
+    color: var(--gold);
     transform: scale(1.1);
 }
 
 .star-rating input[type="radio"]:checked ~ label {
-    color: #b8860b;
+    color: var(--gold);
 }
 
 .star-rating label i {

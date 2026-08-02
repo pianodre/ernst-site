@@ -98,8 +98,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 const navHeight = navbar.offsetHeight;
-                // Scroll slightly into the section so its content sits closer to the top
-                const targetPosition = target.offsetTop - navHeight + 48;
+                // Scroll slightly into the section so its content sits closer to
+                // the top; data-scroll-offset adds a per-section correction
+                const extra = parseInt(target.dataset.scrollOffset, 10) || 0;
+                const targetPosition = target.offsetTop - navHeight + 48 + extra;
 
                 window.scrollTo({
                     top: targetPosition,
@@ -114,6 +116,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearEl) {
         yearEl.textContent = new Date().getFullYear();
     }
+
+    // Years-of-experience figures, computed from a start year
+    document.querySelectorAll('[data-years-since]').forEach(el => {
+        const startYear = parseInt(el.dataset.yearsSince, 10);
+        if (!isNaN(startYear)) {
+            el.textContent = new Date().getFullYear() - startYear;
+        }
+    });
 
     // Contact form submission
     const contactForm = document.querySelector('.contact-form');

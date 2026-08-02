@@ -60,7 +60,7 @@
                 </div>
                 <div class="hero-phase hero-phase-2" aria-hidden="true">
                     <p class="hero-subtitle">About Your Teacher</p>
-                    <h2 class="hero-title">16 years of piano.<br>Teaching since 2019.</h2>
+                    <h2 class="hero-title"><span data-years-since="2009">17</span> years of piano.<br>Teaching since 2019.</h2>
                     <p class="hero-description">MTAC member · Piano Performance at Chapman University</p>
                 </div>
                 <div class="hero-phase hero-phase-3" aria-hidden="true">
@@ -82,19 +82,20 @@
     <section id="about" class="about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-image" data-reveal>
-                    <img src="content/piano-face.JPEG" alt="Dylan Ernst - Piano Teacher" loading="lazy" decoding="async">
+                <div class="about-image" data-reveal="left">
+                    <img src="content/piano-face.JPEG" alt="Dylan Ernst - Piano Teacher" loading="lazy" decoding="async" data-parallax="0.06">
                 </div>
-                <div class="about-content" data-reveal data-reveal-delay="1">
+                <div class="about-content" data-reveal="right" data-reveal-delay="1">
+                    <p class="section-eyebrow">The Teacher</p>
                     <h2 class="section-title">About Me</h2>
                     <p class="about-text">
-                        With 16 years of piano experience and a passion for music education, I provide personalized instruction tailored to each student's goals and learning style. Whether you're a complete beginner or looking to refine your technique, I'm here to guide you on your musical journey.
+                        With <span data-years-since="2009">17</span> years of piano experience and a passion for music education, I provide personalized instruction tailored to each student's goals and learning style. Whether you're a complete beginner or looking to refine your technique, I'm here to guide you on your musical journey.
                     </p>
                     <p class="about-text">
                         I believe that learning piano should be enjoyable and rewarding. My teaching philosophy combines classical technique with practical skills, ensuring students develop a strong foundation while exploring music they love. Each year we celebrate progress with a studio-wide recital every May.
                     </p>
                     <ul class="about-highlights">
-                        <li><i class="fas fa-check"></i> 16 years of piano experience</li>
+                        <li><i class="fas fa-check"></i> <span><span data-years-since="2009">17</span> years of piano experience</span></li>
                         <li><i class="fas fa-check"></i> Music Teachers Association of California (MTAC)</li>
                         <li><i class="fas fa-check"></i> Teaching since 2019</li>
                         <li><i class="fas fa-check"></i> Tesoro High School graduate</li>
@@ -107,8 +108,26 @@
     </section>
 
     <!-- Lessons Section -->
-    <section id="lessons" class="lessons">
+    <!-- data-scroll-offset compensates for the stats band pulled up over the seam -->
+    <section id="lessons" class="lessons" data-scroll-offset="80">
         <div class="container">
+            <!-- Stats band — bridges the About/Lessons seam, numbers count up on scroll -->
+            <div class="stats-band" data-reveal>
+                <div class="stat">
+                    <span class="stat-number" data-countup><span data-years-since="2009">17</span></span>
+                    <span class="stat-label">Years at the Piano</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-countup><span data-years-since="2019">7</span></span>
+                    <span class="stat-label">Years Teaching</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-countup>5.0</span>
+                    <span class="stat-label">Family Rating</span>
+                </div>
+            </div>
+
+            <p class="section-eyebrow center" data-reveal>Lessons &amp; Rates</p>
             <h2 class="section-title center" data-reveal>Lesson Options</h2>
             <p class="section-subtitle" data-reveal>Flexible scheduling to fit your lifestyle</p>
 
@@ -164,6 +183,7 @@
     <!-- Studio Highlights Section -->
     <section id="studio" class="videos">
         <div class="container">
+            <p class="section-eyebrow center" data-reveal>The Studio</p>
             <h2 class="section-title center" data-reveal>Studio Experience</h2>
             <p class="section-subtitle" data-reveal>A supportive environment with year-round training and our annual May recital</p>
 
@@ -207,9 +227,20 @@
         </div>
     </section>
 
+    <!-- Interlude — fixed-image window between Studio and Reviews -->
+    <section class="interlude" aria-label="Dylan Ernst performing at the piano">
+        <div class="interlude-bg"></div>
+        <div class="interlude-scrim"></div>
+        <figure class="interlude-quote" data-reveal>
+            <blockquote>&ldquo;He is incredibly gifted and is patient, kind and thoughtful.&rdquo;</blockquote>
+            <figcaption>May H. &middot; Studio Parent</figcaption>
+        </figure>
+    </section>
+
     <!-- Reviews Section -->
     <section id="reviews" class="reviews">
         <div class="container">
+            <p class="section-eyebrow center" data-reveal>From Families</p>
             <h2 class="section-title center" data-reveal>Student Reviews</h2>
             <p class="section-subtitle" data-reveal>What my students and their families are saying</p>
 
@@ -288,7 +319,8 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-grid">
-                <div class="contact-info" data-reveal>
+                <div class="contact-info" data-reveal="left">
+                    <p class="section-eyebrow">Get Started</p>
                     <h2 class="section-title">Get in Touch</h2>
                     <p class="contact-description">Ready to start your piano journey? Reach out to schedule your first lesson.</p>
                     
@@ -322,7 +354,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form-container" data-reveal data-reveal-delay="1">
+                <div class="contact-form-container" data-reveal="right" data-reveal-delay="1">
                     <form class="contact-form" action="https://formspree.io/f/xrbwbjlr" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -443,14 +475,34 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
+            <p class="footer-name">Dylan Ernst</p>
+            <div class="footer-rule"></div>
+            <div class="footer-nav-row">
+                <nav class="footer-links" aria-label="Footer">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#lessons">Lessons</a>
+                    <a href="#studio">Studio</a>
+                    <a href="#reviews">Reviews</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <div class="footer-social">
+                    <a href="https://instagram.com/dylannernstt" target="_blank" rel="noopener" aria-label="Dylan on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/dylanernstr/" target="_blank" rel="noopener" aria-label="Dylan on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:dylanernstr@gmail.com" aria-label="Email Dylan"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+19499333607" aria-label="Call Dylan"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
                 <p>&copy; <span id="copyright-year">2026</span> Dylan Ernst Piano Studio. All rights reserved.</p>
+                <a class="footer-dev" href="https://dylanernst.dev" target="_blank" rel="noopener">dylanernst.dev</a>
             </div>
         </div>
     </footer>
 
     <script src="js/piano.js"></script>
     <script src="js/reviews.js"></script>
+    <script src="js/motion.js"></script>
     <script type="importmap">
     {
         "imports": {
