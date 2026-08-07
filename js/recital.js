@@ -17,21 +17,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ===== Page turns (cover → program → performer page) =====
 
-    // Pages behind a turning sheet can be scrolled — always land at the
-    // top, jumping instantly so the flip hides the movement
+    // Every page lands at its top, but never visibly: the jump runs either
+    // before first paint or at settle, hidden behind the covering sheet
     const jumpToTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
-    // Run after a sheet's turn: on transitionend, with a timeout fallback
-    // in case the transition never fires
+    // Run after a sheet's turn: on the sheet's own transitionend — child
+    // transitions (e.g. a button's hover) bubble up here and must not cut
+    // the turn short — with a timeout fallback in case it never fires
     function afterTurn(el, settle) {
         let done = false;
-        const once = () => {
+        const once = (event) => {
+            if (event && event.target !== el) return;
             if (done) return;
             done = true;
+            el.removeEventListener('transitionend', once);
             settle();
         };
-        el.addEventListener('transitionend', once, { once: true });
-        setTimeout(once, 1500);
+        el.addEventListener('transitionend', once);
+        setTimeout(once, 1800); // just past the 1.4s turn in css/recital.css
     }
 
     function openProgram() {
@@ -65,10 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function backToCover() {
-        jumpToTop();
         cover.classList.remove('gone');
 
         const settle = () => {
+            jumpToTop();
             program.classList.remove('open');
             if (openButton) openButton.focus({ preventScroll: true });
         };
@@ -83,10 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function backToProgram() {
-        jumpToTop();
         program.classList.remove('gone');
 
         const settle = () => {
+            jumpToTop();
             program.classList.remove('sheet');
             bioPage.classList.remove('open');
             program.focus({ preventScroll: true });
@@ -101,9 +104,69 @@ document.addEventListener('DOMContentLoaded', function () {
         afterTurn(program, settle);
     }
 
+    // Program → performer page: the program itself becomes a sheet and
+    // turns forward, revealing the bio beneath. The sheet keeps showing
+    // the spot the reader was at (scrollTop) while the window resets
+    // beneath it, so nothing visibly jumps
+    function openBioFromProgram() {
+        const readingOffset = window.scrollY;
+        program.classList.add('sheet');
+        program.scrollTop = readingOffset;
+        jumpToTop();
+        bioPage.classList.add('open');
+        bioPage.focus({ preventScroll: true });
+
+        const settle = () => {
+            // Reset while still rendered — scrollTop is a no-op once hidden
+            program.scrollTop = 0;
+            program.classList.add('gone');
+        };
+        if (reduceMotion) {
+            program.classList.add('flipped');
+            settle();
+            return;
+        }
+        void program.offsetWidth; // commit the sheet before turning it
+        program.classList.add('flipped');
+        afterTurn(program, settle);
+    }
+
+    // Performer page → cover: two pages back — turn the cover back in,
+    // then reset the parked program behind it
+    function backToCoverFromBio() {
+        cover.classList.remove('gone');
+
+        const settle = () => {
+            jumpToTop();
+            bioPage.classList.remove('open');
+            program.classList.remove('open', 'sheet', 'flipped', 'gone');
+            if (openButton) openButton.focus({ preventScroll: true });
+        };
+        if (reduceMotion) {
+            cover.classList.remove('flipped');
+            settle();
+            return;
+        }
+        void cover.offsetWidth; // commit the un-hidden cover before turning it back
+        cover.classList.remove('flipped');
+        afterTurn(cover, settle);
+    }
+
     if (coverBioButton) coverBioButton.addEventListener('click', openBioFromCover);
     if (backButton) backButton.addEventListener('click', backToProgram);
     if (coverBackButton) coverBackButton.addEventListener('click', backToCover);
+
+    // Bottom-of-page nav: same page turns, reachable after reading
+    const navPairs = [
+        ['nav-program-cover', backToCover],
+        ['nav-program-bio', openBioFromProgram],
+        ['nav-bio-cover', backToCoverFromBio],
+        ['nav-bio-program', backToProgram],
+    ];
+    navPairs.forEach(([id, turn]) => {
+        const button = document.getElementById(id);
+        if (button) button.addEventListener('click', turn);
+    });
 
     // Direct links skip the cover: #gallery opens the performer page,
     // any other anchor (e.g. #anchor-second-half) opens the program
