@@ -1,8 +1,9 @@
 /**
  * Dylan Ernst Piano Studio
- * Senior recital program — cover flip, expandable program notes,
- * and scroll reveals. Without JS the cover is hidden and the full
- * program renders static (see css/recital.css).
+ * Senior recital — countdown cover, cover flip, expandable program notes,
+ * and scroll reveals. The program is sealed until the recital starts: the
+ * countdown unlocks it on the minute, and the date itself lives in
+ * js/recital-boot.js. Without JS the page stays on the cover.
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -14,6 +15,66 @@ document.addEventListener('DOMContentLoaded', function () {
     const coverBioButton = document.getElementById('open-bio-cover');
     const backButton = document.getElementById('back-to-program');
     const coverBackButton = document.getElementById('back-to-cover');
+    const root = document.documentElement;
+
+    // The gate: set before first paint by js/recital-boot.js, and again here
+    // if the countdown runs out while someone has the page open
+    const isUnlocked = () => root.classList.contains('unlocked');
+
+    // ===== Countdown to the recital =====
+
+    // Counts down to the unlock, not to the downbeat: the program opens at
+    // midnight so it can be read all day before the recital
+    const openTime = (window.RECITAL && window.RECITAL.opens instanceof Date)
+        ? window.RECITAL.opens.getTime()
+        : NaN;
+    const statusLine = document.getElementById('cover-status');
+    const digits = {};
+    document.querySelectorAll('[data-countdown]').forEach((el) => {
+        digits[el.getAttribute('data-countdown')] = el;
+    });
+
+    const pad = (value) => String(value).padStart(2, '0');
+
+    function paintCountdown(msLeft) {
+        const total = Math.floor(Math.max(0, msLeft) / 1000);
+        const parts = {
+            days: Math.floor(total / 86400),
+            hours: Math.floor(total / 3600) % 24,
+            minutes: Math.floor(total / 60) % 60,
+            seconds: total % 60,
+        };
+        Object.keys(parts).forEach((unit) => {
+            if (digits[unit]) digits[unit].textContent = pad(parts[unit]);
+        });
+    }
+
+    function unlock() {
+        root.classList.add('unlocked');
+        paintCountdown(0);
+        if (statusLine) statusLine.textContent = 'The program is open.';
+    }
+
+    // A bad date would leave the countdown at its placeholder rather than
+    // print NaN, and the page stays locked — the safe direction to fail
+    if (Number.isNaN(openTime)) {
+        if (statusLine) statusLine.textContent = 'The program opens on the day of the recital.';
+    } else if (isUnlocked()) {
+        unlock();
+    } else {
+        // Every tick recomputes from the clock instead of decrementing, so a
+        // throttled background tab or a slept laptop returns to the right
+        // number. The interval is cleared the moment it runs out.
+        const tick = () => {
+            const msLeft = openTime - Date.now();
+            paintCountdown(msLeft);
+            if (msLeft > 0) return;
+            window.clearInterval(timer);
+            unlock();
+        };
+        const timer = window.setInterval(tick, 1000);
+        tick();
+    }
 
     // ===== Page turns (cover → program → performer page) =====
 
@@ -38,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function openProgram() {
+        if (!isUnlocked()) return;
         jumpToTop();
         cover.classList.add('flipped');
         program.classList.add('open');
@@ -86,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function backToProgram() {
+        if (!isUnlocked()) return;
         program.classList.remove('gone');
 
         const settle = () => {
@@ -156,10 +219,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (backButton) backButton.addEventListener('click', backToProgram);
     if (coverBackButton) coverBackButton.addEventListener('click', backToCover);
 
-    // Bottom-of-page nav: same page turns, reachable after reading
+    // The remaining page turns: each footer's nav, plus the performer page's
+    // back button, which returns to the cover while the program is still sealed
     const navPairs = [
         ['nav-program-cover', backToCover],
         ['nav-program-bio', openBioFromProgram],
+        ['back-to-cover-top', backToCoverFromBio],
         ['nav-bio-cover', backToCoverFromBio],
         ['nav-bio-program', backToProgram],
     ];
@@ -168,17 +233,19 @@ document.addEventListener('DOMContentLoaded', function () {
         if (button) button.addEventListener('click', turn);
     });
 
-    // Direct links skip the cover: #gallery opens the performer page,
-    // any other anchor (e.g. #anchor-second-half) opens the program
-    if (window.location.hash) {
-        document.documentElement.classList.add('skip-cover');
+    // Direct links skip the cover, mirroring js/recital-boot.js: #gallery
+    // opens the performer page, any other anchor opens the program. A program
+    // anchor followed before the recital lands on the cover instead.
+    const hash = window.location.hash;
+    if (hash === '#gallery') {
+        root.classList.add('skip-cover');
         cover.classList.add('gone');
-        if (window.location.hash === '#gallery') {
-            program.classList.add('open', 'sheet', 'flipped', 'gone');
-            bioPage.classList.add('open');
-        } else {
-            program.classList.add('open');
-        }
+        program.classList.add('open', 'sheet', 'flipped', 'gone');
+        bioPage.classList.add('open');
+    } else if (hash && isUnlocked()) {
+        root.classList.add('skip-cover');
+        cover.classList.add('gone');
+        program.classList.add('open');
     } else if (openButton) {
         openButton.addEventListener('click', openProgram);
     }

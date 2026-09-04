@@ -13,6 +13,7 @@
     --ivory-faint: #8d8778;
     --gold: #d3a339;
     --gold-deep: #b8860b;
+    --key-face: linear-gradient(rgba(236, 231, 219, 0.72), rgba(236, 231, 219, 0.56));
     --serif: 'Playfair Display', Georgia, serif;
     --body: 'Lora', Georgia, serif;
     color-scheme: dark;
@@ -60,8 +61,9 @@ button:focus-visible {
     inset: 0;
     z-index: 10;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Clips the glow, which bleeds past the cover on purpose. Scrolling for a
+       short viewport lives on .cover-inner instead, inside the clip. */
+    overflow: hidden;
     text-align: center;
     background-color: var(--stage);
     transform-origin: left center;
@@ -106,10 +108,27 @@ html.js .sheet.flipped {
     transform: perspective(1600px) rotateY(-180deg);
 }
 
-/* No JS (or arriving on a #anchor link): skip straight to the program */
-html:not(.js) .cover,
+/* Arriving on a #anchor link: skip straight to the page it points at */
 html.skip-cover .cover {
     display: none;
+}
+
+/* The gate. Until the recital starts, the program is not rendered at all and
+   nothing links to it; js/recital-boot.js sets .unlocked once the moment
+   passes, and js/recital.js sets it live if the countdown runs out on screen.
+   Without JS the clock can't be read, so the page stays on the cover. */
+html:not(.unlocked) .program,
+html:not(.unlocked) .program-link,
+html:not(.unlocked) .cover-open {
+    display: none;
+}
+
+html.unlocked .cover-link {
+    display: none;
+}
+
+html.unlocked .cover-status {
+    color: var(--gold);
 }
 
 /* While the cover or a mid-turn sheet is up, the page in flow behind it
@@ -133,9 +152,58 @@ html.js body:has(.cover:not(.gone), .sheet:not(.gone)) {
     to   { opacity: 1;    transform: scale(1.03); }
 }
 
+/* Poster split: portrait beside the billing. Auto margins do the centring. */
+.cover-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    width: min(1040px, 100% - 3rem);
+    /* auto margins rather than align-items: a flex item centred this way stays
+       fully reachable when it is taller than the viewport and has to scroll */
+    margin: auto;
+    max-height: 100%;
+    padding: 2.5rem 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.cover-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.cover-portrait {
+    position: relative;
+    margin: 0;
+}
+
+/* Matches the gallery's register: black and white, hairline frame */
+.cover-portrait img {
+    display: block;
+    width: 100%;
+    height: clamp(320px, 60vh, 540px);
+    object-fit: cover;
+    object-position: 50% 28%;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    filter: grayscale(1);
+}
+
+/* Thin gold frame set inside the photo, echoing the main site */
+.cover-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(211, 163, 57, 0.28);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
 .cover-content {
     position: relative;
-    padding: 2rem 1.5rem;
+    padding: 2rem 0;
     max-width: 620px;
 }
 
@@ -150,10 +218,60 @@ html.js body:has(.cover:not(.gone), .sheet:not(.gone)) {
 
 .cover-title {
     font-family: var(--serif);
-    font-size: clamp(3.25rem, 11vw, 5.5rem);
+    font-size: clamp(2.75rem, 7vw, 4.25rem);
     font-weight: 600;
     line-height: 1.05;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.1rem;
+}
+
+.cover-date {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
+    color: var(--ivory-soft);
+    margin-bottom: 2rem;
+}
+
+/* ===== Countdown ===== */
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.85rem, 3.5vw, 1.9rem);
+    margin-bottom: 2.25rem;
+}
+
+.cd-unit {
+    min-width: clamp(52px, 15vw, 68px);
+}
+
+.cd-value {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 6.5vw, 3.1rem);
+    font-weight: 600;
+    line-height: 1;
+    /* Digits keep the same width as they tick, so nothing shifts */
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+}
+
+.cd-label {
+    display: block;
+    margin-top: 0.55rem;
+    font-size: 0.62rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+}
+
+.cover-status {
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ivory-faint);
+    max-width: 34ch;
+    margin: 0 auto 1.9rem;
 }
 
 .cover-title em {
@@ -192,13 +310,13 @@ html.js body:has(.cover:not(.gone), .sheet:not(.gone)) {
     display: flex;
     justify-content: center;
     gap: 3px;
-    margin-bottom: 3rem;
+    margin-bottom: 2.25rem;
 }
 
 .key {
     position: relative;
-    width: clamp(26px, 7.5vw, 34px);
-    height: 104px;
+    width: clamp(22px, 6vw, 28px);
+    height: clamp(44px, 9vh, 62px);
 }
 
 /* The white key surface lives on ::before so its press animation
@@ -209,7 +327,7 @@ html.js body:has(.cover:not(.gone), .sheet:not(.gone)) {
     inset: 0;
     border: 1px solid var(--line);
     border-radius: 0 0 4px 4px;
-    background: linear-gradient(rgba(236, 231, 219, 0.05), rgba(236, 231, 219, 0.02));
+    background: var(--key-face);
     animation: key-play 6s ease-in-out infinite;
     animation-delay: calc(var(--i) * 0.35s);
 }
@@ -217,7 +335,7 @@ html.js body:has(.cover:not(.gone), .sheet:not(.gone)) {
 /* Each key glows gold for a beat as the sweep passes through it */
 @keyframes key-play {
     0%, 10%, 100% {
-        background: linear-gradient(rgba(236, 231, 219, 0.05), rgba(236, 231, 219, 0.02));
+        background: var(--key-face);
         transform: translateY(0);
         box-shadow: none;
     }
@@ -297,6 +415,45 @@ html.js body:has(.cover:not(.gone), .sheet:not(.gone)) {
 
 .cover-about:hover {
     color: var(--ivory);
+}
+
+/* Too narrow for two columns: the portrait fills the cover behind the
+   billing instead, scrimmed enough to keep the type legible over it */
+@media (max-width: 900px) {
+    .cover-inner {
+        position: static;
+        display: block;
+        width: 100%;
+        margin: auto;
+    }
+
+    .cover-portrait {
+        position: absolute;
+        inset: 0;
+    }
+
+    .cover-portrait img {
+        height: 100%;
+        object-position: 50% 22%;
+        border: none;
+        border-radius: 0;
+    }
+
+    .cover-portrait::after {
+        inset: 0;
+        border: none;
+        border-radius: 0;
+        background: linear-gradient(180deg,
+            rgba(20, 18, 15, 0.86),
+            rgba(20, 18, 15, 0.62) 42%,
+            rgba(20, 18, 15, 0.94));
+    }
+
+    .cover-content {
+        z-index: 1;
+        padding: 2rem 1.5rem;
+        margin: 0 auto;
+    }
 }
 
 /* ===== PROGRAM ===== */
@@ -621,15 +778,17 @@ html:not(.js) .program-header > * {
     outline: none;
 }
 
-html.js .bio-page.open,
-html:not(.js) .bio-page {
+html.js .bio-page.open {
     display: block;
 }
 
-/* Without JS the page turns can't run — hide their buttons */
+/* Without JS the page turns can't run and the clock can't be read — hide
+   their buttons, and the countdown rather than leave it on its placeholder.
+   The date line above it still says when the program opens. */
 html:not(.js) .page-back,
 html:not(.js) .page-nav,
-html:not(.js) .cover-about {
+html:not(.js) .cover-about,
+html:not(.js) .countdown {
     display: none;
 }
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senior Recital | Dylan Ernst</title>
-    <meta name="description" content="Digital program for Dylan Ernst's senior piano recital, featuring works by Bach, Chopin, Beethoven, and Rachmaninoff.">
+    <meta name="description" content="Dylan Ernst's senior piano recital, Sunday, October 11, 2026 at 5:00 PM. The program opens on the day of the recital.">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -14,42 +14,71 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/recital.css">
-    <script>
-        document.documentElement.classList.add('js');
-        // Decide before first paint so anchor links never flash the cover
-        if (window.location.hash) document.documentElement.classList.add('skip-cover');
-    </script>
+    <!-- Runs before first paint so the cover never flashes the wrong state -->
+    <script src="js/recital-boot.js"></script>
 </head>
 <body>
 
-    <!-- Cover — flips away like the front of a printed program -->
+    <!-- Cover — a countdown until the recital; the program stays sealed until then -->
     <section class="cover" id="cover">
         <div class="cover-glow" aria-hidden="true"></div>
-        <div class="cover-content">
-            <p class="cover-eyebrow">Dylan Ernst &middot; Piano</p>
-            <h1 class="cover-title">Senior<br><em>Recital</em></h1>
-            <div class="cover-rule" aria-hidden="true"><span></span><i>&#9670;</i><span></span></div>
 
-            <!-- Self-playing keyboard: keys light up in a slow ascending sweep -->
-            <div class="keys" aria-hidden="true">
-                <span class="key sharp" style="--i:0"></span>
-                <span class="key sharp" style="--i:1"></span>
-                <span class="key" style="--i:2"></span>
-                <span class="key sharp" style="--i:3"></span>
-                <span class="key sharp" style="--i:4"></span>
-                <span class="key sharp" style="--i:5"></span>
-                <span class="key" style="--i:6"></span>
-                <span class="key sharp" style="--i:7"></span>
-                <span class="key sharp" style="--i:8"></span>
-                <span class="key" style="--i:9"></span>
+        <div class="cover-inner">
+            <figure class="cover-portrait">
+                <img src="content/piano-face.JPEG" alt="Dylan Ernst at the grand piano" width="1286" height="1800" fetchpriority="high" decoding="async">
+            </figure>
+
+            <div class="cover-content">
+                <p class="cover-eyebrow">Dylan Ernst &middot; Piano</p>
+                <h1 class="cover-title">Senior<br><em>Recital</em></h1>
+                <p class="cover-date">
+                    <time datetime="2026-10-11T17:00:00-07:00">Sunday, October&nbsp;11, 2026 &middot; 5:00&nbsp;PM</time>
+                </p>
+
+                <!-- Ticking digits are decorative: the date above and the status
+                     line below carry the same meaning for screen readers -->
+                <div class="countdown" id="countdown" aria-hidden="true">
+                    <div class="cd-unit">
+                        <span class="cd-value" data-countdown="days">--</span>
+                        <span class="cd-label">Days</span>
+                    </div>
+                    <div class="cd-unit">
+                        <span class="cd-value" data-countdown="hours">--</span>
+                        <span class="cd-label">Hours</span>
+                    </div>
+                    <div class="cd-unit">
+                        <span class="cd-value" data-countdown="minutes">--</span>
+                        <span class="cd-label">Minutes</span>
+                    </div>
+                    <div class="cd-unit">
+                        <span class="cd-value" data-countdown="seconds">--</span>
+                        <span class="cd-label">Seconds</span>
+                    </div>
+                </div>
+
+                <!-- Self-playing keyboard: keys light up in a slow ascending sweep -->
+                <div class="keys" aria-hidden="true">
+                    <span class="key sharp" style="--i:0"></span>
+                    <span class="key sharp" style="--i:1"></span>
+                    <span class="key" style="--i:2"></span>
+                    <span class="key sharp" style="--i:3"></span>
+                    <span class="key sharp" style="--i:4"></span>
+                    <span class="key sharp" style="--i:5"></span>
+                    <span class="key" style="--i:6"></span>
+                    <span class="key sharp" style="--i:7"></span>
+                    <span class="key sharp" style="--i:8"></span>
+                    <span class="key" style="--i:9"></span>
+                </div>
+
+                <p class="cover-status" id="cover-status" role="status">The program opens on October&nbsp;11.</p>
+
+                <button class="cover-open" id="open-program">
+                    Open the Program
+                    <span class="cover-open-arrow" aria-hidden="true">&rarr;</span>
+                </button>
+
+                <button class="cover-about" id="open-bio-cover">About the Performer <span aria-hidden="true">&rarr;</span></button>
             </div>
-
-            <button class="cover-open" id="open-program">
-                Open the Program
-                <span class="cover-open-arrow" aria-hidden="true">&rarr;</span>
-            </button>
-
-            <button class="cover-about" id="open-bio-cover">About the Performer <span aria-hidden="true">&rarr;</span></button>
         </div>
     </section>
 
@@ -175,7 +204,8 @@
 
     <!-- Performer page — bio + gallery, reached by flipping the program away -->
     <section class="bio-page" id="gallery" tabindex="-1" aria-label="About the performer">
-        <button class="page-back" id="back-to-program"><span aria-hidden="true">&larr;</span> Program</button>
+        <button class="page-back program-link" id="back-to-program"><span aria-hidden="true">&larr;</span> Program</button>
+        <button class="page-back cover-link" id="back-to-cover-top"><span aria-hidden="true">&larr;</span> Cover</button>
 
         <header class="bio-header">
             <p class="program-eyebrow" data-reveal>The Performer</p>
@@ -219,7 +249,7 @@
 
         <nav class="page-nav" aria-label="Program pages">
             <button class="page-turn" id="nav-bio-cover"><span aria-hidden="true">&larr;</span> Cover</button>
-            <button class="page-turn" id="nav-bio-program"><span aria-hidden="true">&larr;</span> Program</button>
+            <button class="page-turn program-link" id="nav-bio-program"><span aria-hidden="true">&larr;</span> Program</button>
         </nav>
     </section>
 
