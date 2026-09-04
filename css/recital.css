@@ -432,9 +432,15 @@ html.js body:has(.cover:not(.gone), .sheet:not(.gone)) {
         inset: 0;
     }
 
+    /* On a phone the photo is taller than it is wide relative to the screen, so
+       it fills the height and the crop happens horizontally. Dylan sits left of
+       centre in the frame, so a 50% (centred) crop clips his back and leaves
+       empty floor on the right; pulling it to 22% puts him under the title.
+       The vertical value still applies on wider screens, where the photo fills
+       the width instead and the crop flips to vertical. */
     .cover-portrait img {
         height: 100%;
-        object-position: 50% 22%;
+        object-position: 22% 22%;
         border: none;
         border-radius: 0;
     }
